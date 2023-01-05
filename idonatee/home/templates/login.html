@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>iDonate</title>
+	<link rel="icon" type="image/x-icon" href="{% static '/images/favicon.ico' %}">
+	<link rel="stylesheet" type="text/css" href="{% static '/css/login.css' %}">
+ <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+{% load static %}
+
+</head>
+<body>
+	{% for message in messages %}
+	<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+		<label  id="mm"><center><strong><b>Message:</strong>{{ message }}</b></center></label>
+		
+		<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+		{% endfor %}
+
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form class="login" action="/signup" method="POST" enctype="multipart/form-data">
+					{%  csrf_token %}
+
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text" id="username" name="username" placeholder="User name" required="">
+					<input type="email" id="email" name="email" placeholder="Email" required="">
+					<input type="password" id="password" name="password" placeholder="Password" required="">
+					<button>Sign up</button>
+				</form>
+			</div>
+
+			<div class="login">
+				<form action="/login" method="POST" enctype="multipart/form-data">
+					{%  csrf_token %}
+
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="username" id="username" name="username" placeholder="User name" required="">
+					<input type="password" id="password" name="password" placeholder="Password" required="">
+					<button>Login</button>
+				</form>
+			</div>
+	</div>
+</body>
+</html>

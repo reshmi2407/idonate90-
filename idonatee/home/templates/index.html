@@ -1,0 +1,372 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+    {% load static %}
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>iDonate Home</title>
+        <link rel="icon" type="image/x-icon" href="{% static '/images/logofav.png' %}">
+
+
+        <!-- CSS FILES -->        
+        <link href="{%bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+
+
+        <link href="bootstrap-icons.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static '/css/bootstrap-icons.css' %}">
+
+
+        <link href="templatemo-kind-heart-charity.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static '/css/templatemo-kind-heart-charity.css' %}">
+
+<!--
+
+TemplateMo 581 Kind Heart Charity
+
+https://templatemo.com/tm-581-kind-heart-charity
+
+-->
+
+    </head>
+    
+    <body id="section_1">
+        {% load static %} 
+
+
+        
+        <nav class="navbar navbar-expand-lg bg-light shadow-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html>
+                    <img src="logo.png class="logo img-fluid" alt="Kind Heart Charity">
+                    <img src="{% static '/images/logo.png' %}" class="logo img-fluid" alt="Kind Heart Charity">
+
+                    <span>
+                        iDonate
+                        <small>Small Help, Great Motive</small>
+                    </span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#top">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_2">About</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="{% url 'signup' %}">SignUp/Login</a>
+                        </li>
+
+                       
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_6">Contact</a>
+                        </li>
+
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            {% load static %}
+
+
+            <section class="hero-section hero-section-full-height">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-lg-12 col-12 p-0">
+                            <div id="hero-slide" class="carousel carousel-fade slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="{% static '/images/about.jpg' %}" class="carousel-image img-fluid" alt="...">
+                                        
+                                        <div class="carousel-caption d-flex flex-column justify-content-end">
+                                            <h1>Non-profit</h1>
+                                            <h1>be a Kind Heart</h1>
+                                            
+                                            
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-10 col-12 text-center mx-auto">
+                            <h2 class="mb-5">Welcome to iDonate</h2>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                            <div class="featured-block d-flex justify-content-center align-items-center">
+                                <a href="https://academic.oup.com/her/article/28/6/1092/595647" class="d-block">
+                                    <img src="{% static '/images/hands.png' %}" class="featured-block-image img-fluid" alt="">
+
+                                    <p class="featured-block-text">Become a <strong>volunteer</strong></p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-4">
+                            <div class="featured-block d-flex justify-content-center align-items-center">
+                                <a href="https://www.cafonline.org/my-personal-giving/long-term-giving/resource-centre/five-reasons-to-give-to-charity" class="d-block">
+                                    <img src="{% static '/images/heart.png' %}" class="featured-block-image img-fluid" alt="">
+
+                                    <p class="featured-block-text"><strong>Caring</strong> Earth</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-4">
+                            <div class="featured-block d-flex justify-content-center align-items-center">
+                                <a href="https://www.betterhealth.vic.gov.au/health/conditionsandtreatments/organ-and-tissue-donation#:~:text=Donation%20is%20the%20giving%20of,organ%20and%20tissue%20after%20death." class="d-block">
+                                    <img src="{% static '/images/receive.png' %}" class="featured-block-image img-fluid" alt="">
+
+                                    <p class="featured-block-text">Make a <strong>Donation</strong></p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                            <div class="featured-block d-flex justify-content-center align-items-center">
+                                <a href="https://www.sciencedirect.com/science/article/pii/S2352250X21001743" class="d-block">
+                                    <img src="{% static '/images/scholarship.png' %}" class="featured-block-image img-fluid" alt="">
+
+                                    <p class="featured-block-text">Gain<strong> Awareness</strong></p>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding section-bg" id="section_2">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                            <img src="{% static '/images/about3.png' %}" class="custom-text-box-image img-fluid" alt="">
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <div class="custom-text-box">
+                                <h2 class="mb-2">Our Story</h2>
+
+                                <h5 class="mb-3">iDonate</h5>
+
+                                <p class="mb-0">This is an Online System built for the Blood Donation Organisation to manage the Blood Bank System in which Blood
+                                    Donors can willingly give their name and the Person in need of blood can find whether the Blood is available
+                                    or not.</p>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="custom-text-box mb-lg-0">
+                                        <h5 class="mb-3">Our Mission</h5>
+
+                                        <p>To Connect Blood and organ donators and Blood and organ Seekers.</p>
+
+                                        
+                                    </div>
+                                </div>
+                                        
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            
+                                
+            <section class="cta-section section-padding section-bg">
+                <div class="container">
+                    <div class="row justify-content-center align-items-center">
+
+                        <div class="col-lg-5 col-12 ms-auto">
+                            <h2 class="mb-0">Make an impact. <br> Save lives.</h2>
+                        </div>
+
+                        <div class="col-lg-5 col-12">
+                            <a href="#section_1" class="custom-btn btn smoothscroll">Make a donation</a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+                      <section class="contact-section section-padding" id="section_6">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-4 col-12 ms-auto mb-5 mb-lg-0">
+                            <div class="contact-info-wrap">
+                                <h2>Get in touch</h2>
+
+                                <div class="contact-image-wrap d-flex flex-wrap">
+                                    <img src="{% static '/images/pretty-blonde-woman-wearing-white-t-shirt.jpg' %}" class="img-fluid avatar-image" alt="">
+
+                                    <div class="d-flex flex-column justify-content-center ms-3">
+                                        <p class="mb-0">MRSD</p>
+                                        <p class="mb-0"><strong>iDonate Team</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-info">
+                                    <h5 class="mb-3">Contact Infomation</h5>
+
+                                    <p class="d-flex mb-2">
+                                        <i class="bi-geo-alt me-2"></i>
+                                        CE Cherthala
+                                    </p>
+
+                                    <p class="d-flex mb-2">
+                                        <i class="bi-telephone me-2"></i>
+
+                                        <a href="tel: 91-8589863239">
+                                            91-8589863239
+                                        </a>
+                                    </p>
+
+                                    <p class="d-flex">
+                                        <i class="bi-envelope me-2"></i>
+
+                                        <a href="mailto:reshmimuthu24@gmail.com">
+                                            donate@charity.org
+                                        </a>
+                                    </p>
+
+                                    <a href="https://goo.gl/maps/vRphKCD5JnN1ANLdA" class="custom-btn btn mt-3">Get Direction</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-12 mb-4">
+                        <img src="{% static '/images/logo.png' %}" class="logo img-fluid" alt="">
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 mb-4">
+                        <h5 class="site-footer-title mb-3">Quick Links</h5>
+
+                        <ul class="footer-menu">
+                            <li class="footer-menu-item"><a href="#section_2" class="footer-menu-link">Our Story</a></li>
+
+                            <li class="footer-menu-item"><a href="#section_1" class="footer-menu-link">Become a volunteer</a></li>
+
+                            <li class="footer-menu-item"><a href="#section_1" class="footer-menu-link">Partner with us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 mx-auto">
+                        <h5 class="site-footer-title mb-3">Contact Infomation</h5>
+
+                        <p class="text-white d-flex mb-2">
+                           
+
+                            <a href="tel: 91-8589863239" class="site-footer-link">
+                                <img src="https://i.pinimg.com/originals/84/4e/8c/844e8cd4ab26c82286238471f0e5a901.png" width="18px" height="18px">
+                                91-8589863239
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            
+                            <a href="mailto:reshmimuthu24@gmail.com" class="site-footer-link"><img src="https://cdn-icons-png.flaticon.com/128/732/732200.png" width="18px" height="18px">
+                                donate@charity.org
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex mt-3">
+                            <img src="data:image/jpeg;base64,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" width="16px" height="16px">
+                            CE Cherthala
+                        </p>
+
+                        <a href="#" class="custom-btn btn mt-3">Get Direction</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-7 col-12">
+                            <p class="copyright-text mb-0">Copyright © 2036 <a href="#">Kind Heart</a> Charity Org.
+                        	Design: <a href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+                        </div>
+                        
+                        <div class="">                            <ul class="social-icon">
+                               
+                                <li class="social-icon-item" >
+                                    <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwjVs7zC9Kn8AhURmmYCHV57AoQYABAAGgJzbQ&ohost=www.google.com&cid=CAASJeRoHKOQQ_ri5xCYILdQwaeMO5hDMHepOqEHLqCSBOb1Gkp90Gw&sig=AOD64_1fzG4_AoCVdVo31byF9IaNFEZPng&q&adurl&ved=2ahUKEwiAv7fC9Kn8AhWPTGwGHeOJDvQQ0Qx6BAgJEAE">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" width="25px" height="25px">
+                                    </a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="https://www.instagram.com/accounts/login/" class="social-icon-link bi-instagram">
+                                        <img src="" width="25px" height="25px">
+                                    </a>
+                                </li>
+
+                                
+
+                                <li class="social-icon-item" >
+                                    <a href="https://www.youtube.com/results?search_query=donotion+blood+and+organs" class="social-icon-link bi-youtube">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png?20220706172052" width="25px" height="25px" >
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </footer>
+         {% load static %}
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="{% static '/js/jquery.min.js' %}"></script>
+        <script src="{% static '/js/bootstrap.min.js' %}"></script>
+        <script src="{% static '/js/jquery.sticky.js' %}"></script>
+        <script src="{% static '/js/click-scroll.js' %}"></script>
+        <script src="{% static '/js/counter.js' %}"></script>
+        <script src="{% static '/js/custom.js' %}"></script>
+
+    </body>
+</html>
