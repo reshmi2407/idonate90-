@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <link rel="icon" type="image/x-icon" href="{% static '/images/favicon.ico' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/log.css' %}">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body class="align">
+  {% load static %}
+
+  <div class="grid align__item">
+
+    <div class="register">
+
+     <img src="{% static '/images/logo.png' %}" width="70px" height="70px"><defs><linearGradient id="a" x1="0%" y1="0%" y2="0%"><stop offset="0%" stop-color="#8ceabb"/><stop offset="100%" stop-color="#378f7b"/></linearGradient></defs><path fill="url(#a)" d="M215 214.9c-83.6 123.5-137.3 200.8-137.3 275.9 0 75.2 61.4 136.1 137.3 136.1s137.3-60.9 137.3-136.1c0-75.1-53.7-152.4-137.3-275.9z"/>
+      <h2>Sign Up</h2>
+
+      <form action="/signup" method="POST" class="form" enctype="multipart/form-data">
+        {%  csrf_token %}
+
+
+        <div class="form__field">
+          <input type="text" name="username" id="username" placeholder="Enter Username" required>
+        </div>
+
+        <div class="form__field">
+            <input type="email" name="email" placeholder="Enter email id" required>
+          </div>
+
+        <div class="form__field">
+          <input type="password" name="password" placeholder="Enter password" required>
+        </div>
+
+        <div class="form__field">
+            <input type="password" name="confirmpassword" placeholder="Confirm password" required>
+          </div>
+
+          <div class="input-field">
+            <label>Select Role</label>
+            <select id="role" name="role" value="role_choices" required>
+                <option  disabled selected>Select Role</option>
+                <option>Donor User</option>
+                <option>Receiver User</option>
+                <option>Organisation User</option>
+                <option>Hospital User</option>
+            </select>
+<br></br>
+
+
+          <div class="form__field">
+            <input type="submit" value="SignUp">
+          </div>
+  
+      </form>
+
+      <p>Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+
+    </div> 
+
+  </div>
+
+</body>
+</html>

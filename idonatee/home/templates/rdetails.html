@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+{% load static %} 
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="{% static '/css/details.css' %}">
+
+     
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+</head>
+{% load static %} 
+
+<body>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <label  id="mm"><center><strong><b>Message:</strong>{{ message }}</b></center></label>
+    
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    {% endfor %}
+
+    <div class="container">
+        <header>iDonate  Registration</header>
+
+        <form action="/rdetail"  method="POST" enctype="multipart/form-data">
+            {%  csrf_token %}
+            <div class="form first">
+                
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Full Name</label>
+                            <input type="text" id="fname" name="fname" placeholder="Enter your name" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Date of Birth</label>
+                            <input type="date" id="rdob" name="rdob" placeholder="Enter birth date" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="email" id="remail" name="remail" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Mobile Number</label>
+                            <input type="number" id="rmobno" name="rmobno" placeholder="Enter mobile number" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Gender</label>
+                            <select id="rge" name="rge" required>
+                                <option  disabled selected>Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+
+
+                        </div>
+
+                        <div class="input-field">
+                            <label>Age</label>
+                            <input type="number" id="rag" name="rag" placeholder="Enter Your Age" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Blood Group</label>
+                            <select id="rbg" name="rbg" required>
+                                <option  disabled selected>Donated Blood/Organ</option>
+                                <option>A+</option>
+                                <option>B+</option>
+                                <option>AB+</option>
+                                <option>O+</option>
+                                <option>A-</option>
+                                <option>B-</option>
+                                <option>AB-</option>
+                                <option>O-</option>
+                            </select>
+
+
+                        </div>
+
+                        <div class="input-field">
+                            <label>Address</label>
+                            <input type="text" id="raddress" name="raddress" placeholder="Enter your Address" required>
+                        </div>
+                    
+                        <div class="input-field">
+                            <label>Occupation</label>
+                            <input type="text"  id="roccupation" name="roccupation" placeholder="Enter your occupation" required>
+                        </div>
+
+            
+                        <div class="input-field">
+                            <label>Enter Your Weight</label>
+                            <input type="number" id="rweight" name="rweight" placeholder="Enter your Weight" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Enter Your Height</label>
+                            <input type="number" id="rheight" name="rheight" placeholder="Enter your Height" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Allergic/Not ?</label>
+                            <select id="ran" name="ran" required>
+                                <option  disabled selected>Allergic/Not ?</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+
+
+                        </div>
+
+                        <div class="input-field">
+                            <label>Taking Medicine Regularly ?</label>
+                            <select id="rtmr" name="rtmr" required>
+                                <option  disabled selected>Taking Medicine Regularly</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+
+
+                        </div>
+
+                        <div class="input-field">
+                            <label>Lastly Received Date</label>
+                            <input type="date" id="rlrd" name="rlrd" placeholder="Enter the date" required>
+                        </div>
+
+
+                        <div class="input-field">
+                            <label>Received Blood/Organ</label>
+                            <select id="rdro" name="rdro" required>
+                                <option  disabled selected>Donated Blood/Organ</option>
+                                <option>Blood</option>
+                                <option>Kidney</option>
+                                <option>Liver</option>
+                                <option>Lungs</option>
+                                <option>Heart</option>
+                                <option>Pancreas</option>
+                                <option>Intestine</option>
+                                <option>Eye</option>
+                            </select>
+
+
+                        </div>
+
+                <!--
+                <div class="details ID">
+                    <span class="title">Identity Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>ID Type</label>
+                            <select id="idtype" name="idtype" required>
+                                <option  disabled selected>Select ID Type</option>
+                                <option>Aadhar</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label>ID Number</label>
+                            <input type="number" id="idno"  name="idno" placeholder="Enter ID number" required>
+                        </div>
+                        --> 
+
+                        
+                        
+                        <div class="card-box">
+                            <label>Image</label>
+                            <input type="file" id="rimage" name="rimage" placeholder="Upload your Image" required>
+                        </div>
+                        <button class="sumbit">
+                            <span class="btnText">NEXT</span>
+                            <i class="uil uil-navigator"></i>
+                        </button>
+                </div>
+            
+            
+        </div>
+    </div> 
+</div>
+</form>
+</div>
+</body>
+</html>
