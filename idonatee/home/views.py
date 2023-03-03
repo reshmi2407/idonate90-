@@ -1,9 +1,10 @@
 from email import message
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from .models import Signupp,Detail,Rdetail,Odetail,Detail2
+from .models import Signupp,Detail,Rdetail,Odetail,Hdetail,Detail2,Quick
 
 # Create your views here.
+global val
 
 
 def home(request):
@@ -16,6 +17,9 @@ def signup(request):
         password=request.POST['password']
         confirmpassword=request.POST['confirmpassword']
         role=request.POST['role']
+
+        def val():
+            return username
 
 
 
@@ -34,23 +38,22 @@ def signup(request):
 
         credentials=Signupp.objects.all()
         flag=0
-        
+
+
         for i in credentials:
             if i.confirmpassword==confirmpassword and i.password==password:
-                for j in credentials:
-                    if j.role=='Donor User':
-                        return render(request,"ddetails.html")
-                    if j.role=='Receiver User':
-                        return render(request,"rdetails.html")
-                    if j.role=='Organisation User':
-                        return render(request,"odetails.html")
-                    if j.role=='Organisation User':
-                        return render(request,"hdetails.html")
+                if i.role=='Donor User':
+                    return render(request,"ddetails.html")
+                if i.role=='Receiver User':
+                    return render(request,"rdetails.html")
+                if i.role=='Organisation User':
+                    return render(request,"odetails.html")
+                if i.role=='Hospital User':
+                    return render(request,"hdetails.html")
                 flag=1
-                global val
-                def val():
-                    return username
-                #return render(request,"ddetails.html")
+                username = val()
+                
+                return render(request,"ddetails.html")
         if flag==0:
             messages.error(request,"Wrong Credentials")
             return redirect('home')
@@ -85,6 +88,8 @@ def dashboard(request):
     return render(request,"dashboard.html")
 
 def detail(request):
+    def val():
+        return username
     if request.method=="POST":
         fullname=request.POST['fullname']
         dob=request.POST['dob']
@@ -116,6 +121,8 @@ def detail(request):
     return render(request, "ddetails.html")
 
 def rdetail(request):
+    def val():
+        return username
     if request.method=="POST":
         fname=request.POST['fname']
         rdob=request.POST['rdob']
@@ -168,6 +175,29 @@ def odetail(request):
     return render(request, "odetails.html")
 
 
+def hdetail(request):
+    if request.method=="POST":
+        hfname=request.POST['hfname']
+        hid=request.POST['hid']
+        hemail=request.POST['hemail']
+        hmobno=request.POST['hmobno']
+        haddress=request.POST['haddress']
+        bbp=request.POST['bbp']
+        obp=request.POST['obp']
+        if len(request.FILES) !=0:
+            himage=request.FILES['himage']
+
+        username=val()
+
+        #messages.success(request,"Your account has created successfully")
+        hdet=Hdetail(username=username,hfname=hfname,hid=hid,hemail=hemail,hmobno=hmobno,haddress=haddress,bbp=bbp,obp=obp,himage=himage)
+        hdet.save()
+        messages.success(request,"Details added successfully")
+        return render(request,"dashboard.html")
+        
+
+    return render(request, "hdetails.html")
+
 
 def detail2(request):
     if request.method=="POST":
@@ -187,5 +217,32 @@ def detail2(request):
 
     return render(request, "details2.html")
 
+
+def quick(request):
+    if request.method=="POST":
+        qfname=request.POST['qfname']
+        qdob=request.POST['qdob']
+        qemail=request.POST['qemail']
+        qmobno=request.POST['qmobno']
+        qge=request.POST['qge']
+        qage=request.POST['qage']
+        qbg=request.POST['qbg']
+        qaddress=request.POST['qaddress']
+        qweight=request.POST['qweight']
+        qheight=request.POST['qheight']
+        qan=request.POST['qan']
+        qtmr=request.POST['qtmr']
+        qidtype=request.POST['qidtype']
+        if len(request.FILES) !=0:
+            qimage=request.FILES['qimage']
+
+        username=val()
+
+        #messages.success(request,"Your account has created successfully")
+        det=Detail(username=username,qfname=qfname,qdob=qdob,qemail=qemail,qmobno=qmobno,qge=qge,qage=qage,qbg=qbg,qaddress=qaddress,qweight=qweight,qheight=qheight,qan=qan,qtmr=qtmr,qidtype=qidtype,qimage=qimage)
+        det.save()
+        messages.success(request,"Details added successfully")
+        return render(request,"dashboard.html")
+    return render(request, "quick.html")
 
 

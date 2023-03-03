@@ -64,6 +64,17 @@ class Odetail(models.Model):
     oaddress=models.CharField(max_length=30)
     oimage=models.ImageField(upload_to='pictures')
 
+class Hdetail(models.Model):
+    username=models.CharField(max_length=20)
+    hfname=models.CharField(max_length=20)
+    hid=models.CharField(max_length=20)
+    hemail=models.EmailField()
+    hmobno=models.IntegerField()
+    haddress=models.CharField(max_length=30)
+    bbp=models.CharField(max_length=10)
+    obp=models.CharField(max_length=10)
+    himage=models.ImageField(upload_to='pictures')
+
 class Detail2(models.Model):
     username=models.CharField(max_length=20)
     sid=models.CharField(max_length=10)
@@ -71,6 +82,21 @@ class Detail2(models.Model):
     dsbg=models.ImageField(upload_to='pictures')
 
 
-
+class Quick(models.Model):
+    username=models.CharField(max_length=20)
+    qfname=models.CharField(max_length=20)
+    qdob=models.DateField()
+    qemail=models.EmailField()
+    qmobno=models.IntegerField()
+    qge=models.CharField(max_length=10)
+    qage=models.IntegerField()
+    qbg=models.CharField(max_length=10)
+    qaddress=models.CharField(max_length=30)
+    qweight=models.IntegerField()
+    qheight=models.IntegerField()
+    qan=models.CharField(max_length=10)
+    qtmr=models.CharField(max_length=10)
+    qidtype=models.CharField(max_length=10)
+    qimage=models.ImageField(upload_to='pictures')
 
 

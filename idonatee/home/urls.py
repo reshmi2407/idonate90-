@@ -10,6 +10,8 @@ urlpatterns = [
     path('detail',views.detail, name='detail'),
     path('rdetail',views.rdetail, name='rdetail'),
     path('odetail',views.odetail, name='odetail'),
+    path('hdetail',views.hdetail, name='hdetail'),
+    path('quick',views.quick, name='quick'),
     path('detail2',views.detail2, name='detail2'),
     path('dashboard',views.dashboard,name='dashboard'),
     ] 
