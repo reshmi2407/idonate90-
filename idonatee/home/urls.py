@@ -14,4 +14,5 @@ urlpatterns = [
     path('quick',views.quick, name='quick'),
     path('detail2',views.detail2, name='detail2'),
     path('dashboard',views.dashboard,name='dashboard'),
+    path('profile',views.profile, name='profile'),
     ] 

@@ -1,5 +1,6 @@
+{% load static %}
 <!DOCTYPE html>
-{% load static %} 
+ 
 
 <html lang="en">
 <head>
@@ -18,14 +19,14 @@
 {% load static %} 
 
 <body>
-    {% for message in messages %}
+    {% comment %} {% for message in messages %}
     <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
     <label  id="mm"><center><strong><b>Message:</strong>{{ message }}</b></center></label>
     
     <span aria-hidden="true">&times;</span>
     </button>
     </div>
-    {% endfor %}
+    {% endfor %} {% endcomment %}
 
     <div class="container">
         <header>iDonate Registration</header>

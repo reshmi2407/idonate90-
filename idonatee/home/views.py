@@ -4,7 +4,7 @@ from django.contrib import messages
 from .models import Signupp,Detail,Rdetail,Odetail,Hdetail,Detail2,Quick
 
 # Create your views here.
-global val
+#global val
 
 
 def home(request):
@@ -18,15 +18,16 @@ def signup(request):
         confirmpassword=request.POST['confirmpassword']
         role=request.POST['role']
 
+        global val
         def val():
             return username
 
 
 
         if Signupp.objects.filter(username=username,email=email):
-            
-            return render(request,"log.html")
             messages.error(request,"User already exist")
+            return render(request,"log.html")
+            
 
         #messages.success(request,"Your account has created successfully")
         myprofile=Signupp(username=username,email=email,password=password,confirmpassword=confirmpassword,role=role)
@@ -36,24 +37,28 @@ def signup(request):
 
         #return render(request,"details.html")
 
-        credentials=Signupp.objects.all()
+        dongli=Signupp.objects.all()
         flag=0
 
 
-        for i in credentials:
-            if i.confirmpassword==confirmpassword and i.password==password:
-                if i.role=='Donor User':
-                    return render(request,"ddetails.html")
-                if i.role=='Receiver User':
-                    return render(request,"rdetails.html")
-                if i.role=='Organisation User':
-                    return render(request,"odetails.html")
-                if i.role=='Hospital User':
-                    return render(request,"hdetails.html")
-                flag=1
-                username = val()
-                
+        for i in dongli:
+            #if i.confirmpassword==confirmpassword and i.password==password:
+            if i.role=='Organisation User':
+                return render(request,"odetails.html")
+            if i.role=='Hospital User':
+                return render(request,"hdetails.html")
+            if i.role=='Donor User':
                 return render(request,"ddetails.html")
+            if i.role=='Receiver User':
+                return render(request,"rdetails.html")
+            
+
+            
+        
+            flag=1
+            username = val()
+                
+            #return render(request,"ddetails.html")
         if flag==0:
             messages.error(request,"Wrong Credentials")
             return redirect('home')
@@ -70,7 +75,7 @@ def login(request):
         for i in credential:
             if i.username==username and i.password==password:
                 flag=1
-                
+                global val
                 def val():
                     return username
                 return render(request,"dashboard.html")
@@ -155,6 +160,8 @@ def rdetail(request):
 
 
 def odetail(request):
+    def val():
+        return username
     if request.method=="POST":
         ofname=request.POST['ofname']
         oemail=request.POST['oemail']
@@ -176,6 +183,8 @@ def odetail(request):
 
 
 def hdetail(request):
+    def val():
+        return username
     if request.method=="POST":
         hfname=request.POST['hfname']
         hid=request.POST['hid']
@@ -200,6 +209,8 @@ def hdetail(request):
 
 
 def detail2(request):
+    def val():
+        return username
     if request.method=="POST":
         sid=request.POST['sid']
         eidn=request.POST['eidn']
@@ -219,6 +230,8 @@ def detail2(request):
 
 
 def quick(request):
+    def val():
+        return username
     if request.method=="POST":
         qfname=request.POST['qfname']
         qdob=request.POST['qdob']
@@ -227,7 +240,6 @@ def quick(request):
         qge=request.POST['qge']
         qage=request.POST['qage']
         qbg=request.POST['qbg']
-        qaddress=request.POST['qaddress']
         qweight=request.POST['qweight']
         qheight=request.POST['qheight']
         qan=request.POST['qan']
@@ -235,14 +247,27 @@ def quick(request):
         qidtype=request.POST['qidtype']
         if len(request.FILES) !=0:
             qimage=request.FILES['qimage']
-
+        
         username=val()
 
         #messages.success(request,"Your account has created successfully")
-        det=Detail(username=username,qfname=qfname,qdob=qdob,qemail=qemail,qmobno=qmobno,qge=qge,qage=qage,qbg=qbg,qaddress=qaddress,qweight=qweight,qheight=qheight,qan=qan,qtmr=qtmr,qidtype=qidtype,qimage=qimage)
-        det.save()
+        detq=Detail(username=username,qfname=qfname,qdob=qdob,qemail=qemail,qmobno=qmobno,qge=qge,qage=qage,qbg=qbg,qweight=qweight,qheight=qheight,qan=qan,qtmr=qtmr,qidtype=qidtype,qimage=qimage)
+        detq.save()
         messages.success(request,"Details added successfully")
         return render(request,"dashboard.html")
     return render(request, "quick.html")
 
+
+def profile(request):
+    username=val()
+    user_profile=Detail.objects.all()
+    for i in user_profile:
+        if username==i.username:
+            break
+
+    user_details=Detail.objects.all()
+    for j in user_details:
+        if username==j.username:
+            break
+    return render(request,'profile.html',{'i':i,'j':j})
 

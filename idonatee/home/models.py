@@ -91,7 +91,6 @@ class Quick(models.Model):
     qge=models.CharField(max_length=10)
     qage=models.IntegerField()
     qbg=models.CharField(max_length=10)
-    qaddress=models.CharField(max_length=30)
     qweight=models.IntegerField()
     qheight=models.IntegerField()
     qan=models.CharField(max_length=10)
