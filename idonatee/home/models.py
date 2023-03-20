@@ -1,6 +1,6 @@
 from unittest.util import _MAX_LENGTH
 from django.db import models
-from matplotlib import image
+# from matplotlib import image
 
 
 
@@ -10,14 +10,8 @@ class Signupp(models.Model):
     username = models.CharField(max_length=20)
     email = models.EmailField()
     password = models.CharField(max_length=10)
-    confirmpassword = models.CharField(max_length=10)
     role=models.CharField(max_length=10)
-    """ role_choices=(
-       ('Receiver User'),
-        ('Organisation User'),
-        ('Hospital User'),
-    )
- """
+    
 class Detail(models.Model):
     username=models.CharField(max_length=20)
     fullname=models.CharField(max_length=20)
@@ -52,7 +46,7 @@ class Rdetail(models.Model):
     rheight=models.IntegerField()
     ran=models.CharField(max_length=10)
     rtmr=models.CharField(max_length=10)
-    rldd=models.DateField()
+    rlrd=models.DateField()
     rdbo=models.CharField(max_length=10)
     rimage=models.ImageField(upload_to='pictures')
 

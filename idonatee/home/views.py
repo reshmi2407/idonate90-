@@ -15,7 +15,6 @@ def signup(request):
         username=request.POST['username']
         email=request.POST['email']
         password=request.POST['password']
-        confirmpassword=request.POST['confirmpassword']
         role=request.POST['role']
 
         global val
@@ -30,7 +29,7 @@ def signup(request):
             
 
         #messages.success(request,"Your account has created successfully")
-        myprofile=Signupp(username=username,email=email,password=password,confirmpassword=confirmpassword,role=role)
+        myprofile=Signupp(username=username,email=email,password=password,role=role)
         myprofile.save()
         messages.success(request,"Your account has created successfully")
         
@@ -43,13 +42,13 @@ def signup(request):
 
         for i in dongli:
             #if i.confirmpassword==confirmpassword and i.password==password:
-            if i.role=='Organisation User':
+            if role=='Organisation User':
                 return render(request,"odetails.html")
-            if i.role=='Hospital User':
+            if role=='Hospital User':
                 return render(request,"hdetails.html")
-            if i.role=='Donor User':
+            if role=='Donor User':
                 return render(request,"ddetails.html")
-            if i.role=='Receiver User':
+            if role=='Receiver User':
                 return render(request,"rdetails.html")
             
 
@@ -73,17 +72,65 @@ def login(request):
         credential=Signupp.objects.all()
         flag=0
         for i in credential:
-            if i.username==username and i.password==password:
-                flag=1
-                global val
-                def val():
-                    return username
-                return render(request,"dashboard.html")
+            if i.username==username and i.password==password :
+                if i.role=='Receiver User':
+                    flag=1
+                    global val
+                    def val():
+                        return username
+                
+                    return render(request,"rdashboard.html")
+                if i.role=='Donor User':
+                    flag=1
+                    #global val
+                    def val():
+                        return username
+                
+                    return render(request,"dashboard.html")
+                if i.role=='Hospital User':
+                    flag=1
+                    #global val
+                    def val():
+                        return username
+                
+                    return render(request,"hdashboard.html")
+                if i.role=='Organisation User':
+                    flag=1
+                    #global val
+                    def val():
+                        return username
+                
+                    return render(request,"odashboard.html")
         if flag==0:
             messages.error(request,"Wrong Credentials")
             return redirect('home')
 
     return render(request,"log.html")
+
+def adminlogin(request):
+    if request.method =='POST':
+        username=request.POST['username']
+        password=request.POST['password']
+
+        #credential=Signupp.objects.all()
+        flag=0
+        #for i in credential:
+        if username==username and password==password:
+                flag=1
+                global val
+                def val():
+                    return username
+                return render(request,"admindash.html")
+        if flag==0:
+            messages.error(request,"Wrong Credentials")
+            return redirect('home')
+
+    return render(request,"adminlogin.html")
+
+def admin_home(request):
+    return render(request,"admindash.html")
+
+
 
 def signout(request):
     messages.success(request,"Logged Out successfully!")
@@ -91,6 +138,15 @@ def signout(request):
 
 def dashboard(request):
     return render(request,"dashboard.html")
+
+def rdashboard(request):
+    return render(request,"rdashboard.html")
+
+def odashboard(request):
+    return render(request,"odashboard.html")
+
+def hdashboard(request):
+    return render(request,"hdashboard.html")
 
 def detail(request):
     def val():
@@ -142,7 +198,7 @@ def rdetail(request):
         rheight=request.POST['rheight']
         ran=request.POST['ran']
         rtmr=request.POST['rtmr']
-        rldd=request.POST['rldd']
+        rlrd=request.POST['rlrd']
         rdbo=request.POST['rdbo']
         if len(request.FILES) !=0:
             rimage=request.FILES['rimage']
@@ -150,7 +206,7 @@ def rdetail(request):
         username=val()
 
         #messages.success(request,"Your account has created successfully")
-        rdet=Rdetail(username=username,fname=fname,rdob=rdob,remail=remail,rmobno=rmobno,rge=rge,rage=rage,rbg=rbg,raddress=raddress,roccupation=roccupation,rweight=rweight,rheight=rheight,ran=ran,rtmr=rtmr,rldd=rldd,rdbo=rdbo,rimage=rimage)
+        rdet=Rdetail(username=username,fname=fname,rdob=rdob,remail=remail,rmobno=rmobno,rge=rge,rage=rage,rbg=rbg,raddress=raddress,roccupation=roccupation,rweight=rweight,rheight=rheight,ran=ran,rtmr=rtmr,rlrd=rlrd,rdbo=rdbo,rimage=rimage)
         rdet.save()
         messages.success(request,"Details added successfully")
         return render(request,"details2.html")
@@ -264,10 +320,5 @@ def profile(request):
     for i in user_profile:
         if username==i.username:
             break
-
-    user_details=Detail.objects.all()
-    for j in user_details:
-        if username==j.username:
-            break
-    return render(request,'profile.html',{'i':i,'j':j})
+    return render(request,'profile.html',{'i':i})
 

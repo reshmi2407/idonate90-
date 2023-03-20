@@ -36,16 +36,19 @@
           </div>
 
         <div class="form__field">
-          <input type="password" name="password" placeholder="Enter password" required>
+          <input type="password" name="password" placeholder="Enter password" id="myInput" required>
+          <p><input type="checkbox" onclick="myFunction()">Show Password</p>
+
+          
         </div>
 
-        <div class="form__field">
+        {% comment %} <div class="form__field">
             <input type="password" name="confirmpassword" placeholder="Confirm password" required>
           </div>
-
+ {% endcomment %}
           <div class="input-field">
             <label>Select Role</label>
-            <select id="role" name="role" value="role_choices" required>
+            <select id="role" name="role" required>
                 <option  disabled selected>Select Role</option>
                 <option>Donor User</option>
                 <option>Receiver User</option>
@@ -69,3 +72,15 @@
 
 </body>
 </html>
+
+
+<script>
+  function myFunction() {
+    var x = document.getElementById("myInput");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+  </script>
