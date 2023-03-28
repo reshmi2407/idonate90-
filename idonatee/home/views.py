@@ -148,6 +148,12 @@ def odashboard(request):
 def hdashboard(request):
     return render(request,"hdashboard.html")
 
+def qdashboard(request):
+    return render(request,"qdashboard.html")
+
+def admindash(request):
+    return render(request,"admindash.html")
+
 def detail(request):
     def val():
         return username
@@ -286,8 +292,6 @@ def detail2(request):
 
 
 def quick(request):
-    def val():
-        return username
     if request.method=="POST":
         qfname=request.POST['qfname']
         qdob=request.POST['qdob']
@@ -304,13 +308,13 @@ def quick(request):
         if len(request.FILES) !=0:
             qimage=request.FILES['qimage']
         
-        username=val()
+    
 
         #messages.success(request,"Your account has created successfully")
-        detq=Detail(username=username,qfname=qfname,qdob=qdob,qemail=qemail,qmobno=qmobno,qge=qge,qage=qage,qbg=qbg,qweight=qweight,qheight=qheight,qan=qan,qtmr=qtmr,qidtype=qidtype,qimage=qimage)
+        detq=Quick(qfname=qfname,qdob=qdob,qemail=qemail,qmobno=qmobno,qge=qge,qage=qage,qbg=qbg,qweight=qweight,qheight=qheight,qan=qan,qtmr=qtmr,qidtype=qidtype,qimage=qimage)
         detq.save()
         messages.success(request,"Details added successfully")
-        return render(request,"dashboard.html")
+        return render(request,"qdashboard.html")
     return render(request, "quick.html")
 
 
@@ -322,3 +326,36 @@ def profile(request):
             break
     return render(request,'profile.html',{'i':i})
 
+def rprofile(request):
+    username=val()
+    user_profile=Rdetail.objects.all()
+    for i in user_profile:
+        if username==i.username:
+            break
+    return render(request,'rprofile.html',{'i':i})
+
+def adminreq(request):
+    # username=val()
+    up=Detail.objects.all()
+    up1=Detail2.objects.all()
+    return render(request,'adminreq.html',{'up':up,'up1':up1})
+
+def qrec(request):
+    # username=val()
+    i=Rdetail.objects.all()
+    return render(request,'qrec.html',{'i':i})
+
+def qorg(request):
+    # username=val()
+    org=Odetail.objects.all()
+    return render(request,'qorg.html',{'org':org})
+
+def qhos(request):
+    # username=val()
+    hos=Hdetail.objects.all()
+    return render(request,'qhos.html',{'hos':hos})
+
+def dsearch(request):
+    # username=val()
+    dsear=Rdetail.objects.all()
+    return render(request,'dsearch.html',{'dsear':dsear})
