@@ -1158,7 +1158,7 @@
 
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="/admindash" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>HOME</span></a></li>
+          <li><a href="/admhos" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>HOME</span></a></li>
 
         
     </div> 
@@ -1172,36 +1172,36 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Full Name</th>
+                  <th>Hospital Name</th>
                   <th>Email</th>
                   <th>Contact</th>
-                  <th>Bloodgroup</th>
-                  <th>Proof</th>
-
+                  
                   <th>Status</th>
-                    <th>Assign</th>
+                  <th>Assign</th>
                   
               </tr>
           </thead>
           <tbody>
-          {% for i in up %}
+          {% for i in hos %}
            
             
                 <tr>
               <td>{{forloop.counter}}</td>
-              <td>{{i.fullname}}</td>
-              <td>{{i.email}}</td>
-              <td>{{i.mobno}}</td>
-              <td>{{i.bg}}</td>
-              {% for j in up1 %}
-              <td> <a href="{{ j.dsbg.url }}"><img src="{{ j.dsbg.url }}" width="100"></a> </td>
+              <td>{{i.hfname}}</td>
+              <td>{{i.hemail}}</td>
+              <td>{{i.hmobno}}</td>
+              
+              <td><span class="label label-danger"></span></td>
+                <td><button class="btn btn-primary">assign_status</button></a></td>
+              {% comment %} {% for j in up1 %}
+              <td> <a href="{{ j.dsbg.url }}"><img src="{{ j.dsbg.url }}" width="100"></a> </td> {% endcomment %}
 
                 {% comment %} <td><span class="label label-danger">{{i.status.status}}</span></td> {% endcomment %}
                 {% comment %} <td><a href="{% url 'status' i.id %}" ><button class="btn btn-primary">assign_status</button></a></td> {% endcomment %}
                 {% comment %} <td><a href="{% url 'service_man_detail' i.id %}" ><button class="btn btn-info">View Details<i class="fa fa-eye"></i></button></a></td> {% endcomment %}
         </tr> 
           {% endfor %}
-          {% endfor %}
+          
       </tbody>
   </table>
   

@@ -154,6 +154,18 @@ def qdashboard(request):
 def admindash(request):
     return render(request,"admindash.html")
 
+def admdonar(request):
+    return render(request,"admdonar.html")
+
+def admrec(request):
+    return render(request,"admrec.html")
+
+def admorg(request):
+    return render(request,"admorg.html")
+
+def admhos(request):
+    return render(request,"admhos.html")
+
 def detail(request):
     def val():
         return username
@@ -334,11 +346,17 @@ def rprofile(request):
             break
     return render(request,'rprofile.html',{'i':i})
 
-def adminreq(request):
+def admdonreq(request):
     # username=val()
     up=Detail.objects.all()
     up1=Detail2.objects.all()
-    return render(request,'adminreq.html',{'up':up,'up1':up1})
+    return render(request,'admdonreq.html',{'up':up,'up1':up1})
+
+def admrecreq(request):
+    # username=val()
+    rd=Rdetail.objects.all()
+    rd1=Detail2.objects.all()
+    return render(request,'admrecreq.html',{'rd':rd,'rd1':rd1})
 
 def qrec(request):
     # username=val()
@@ -359,3 +377,14 @@ def dsearch(request):
     # username=val()
     dsear=Rdetail.objects.all()
     return render(request,'dsearch.html',{'dsear':dsear})
+
+def admorgreq(request):
+    # username=val()
+    org=Odetail.objects.all()
+    return render(request,'admorgreq.html',{'org':org})
+
+def admhosreq(request):
+    # username=val()
+    hos=Hdetail.objects.all()
+    return render(request,'admhosreq.html',{'hos':hos})
+
