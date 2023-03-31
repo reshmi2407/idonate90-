@@ -1184,15 +1184,15 @@
           <tbody>
           {% for i in dsear %}
            
-            
+          {% comment %} <a href="{% url 'profile' user.id %}"> {% endcomment %}
                 <tr>
               <td>{{forloop.counter}}</td>
               <td>{{i.fname}}</td>
               <td>{{i.remail}}</td>
               <td>{{i.rmobno}}</td>
               <td>{{i.rbg}}</td>
-              <td><button class="btn btn-info">View Profile<i class="fa fa-eye"></i></button></td>
-              <td><button class="btn btn-info">Accept<i class="fa fa-eye"></i></button></td>
+              <td><p>View Profile</a></p> </td>         
+                <td><button class="btn btn-info">Request<i class="fa fa-eye"></i></button></td>
 
               {% comment %} {% for j in up1 %}
               <td> <a href="{{ j.dsbg.url }}"><img src="{{ j.dsbg.url }}" width="100"></a> </td> {% endcomment %}

@@ -167,8 +167,8 @@ def admhos(request):
     return render(request,"admhos.html")
 
 def detail(request):
-    def val():
-        return username
+    # def val():
+    #     return username
     if request.method=="POST":
         fullname=request.POST['fullname']
         dob=request.POST['dob']
@@ -283,8 +283,8 @@ def hdetail(request):
 
 
 def detail2(request):
-    def val():
-        return username
+    # def val():
+    #     return username
     if request.method=="POST":
         sid=request.POST['sid']
         eidn=request.POST['eidn']
