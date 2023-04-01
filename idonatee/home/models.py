@@ -75,6 +75,12 @@ class Detail2(models.Model):
     eidn=models.IntegerField()
     dsbg=models.ImageField(upload_to='pictures')
 
+class Rdetail2(models.Model):
+    username=models.CharField(max_length=20)
+    rsid=models.CharField(max_length=10)
+    reidn=models.IntegerField()
+    rdsbg=models.ImageField(upload_to='pictures')
+
 
 class Quick(models.Model):
     username=models.CharField(max_length=20)

@@ -15,6 +15,7 @@ urlpatterns = [
     path('hdetail',views.hdetail, name='hdetail'),
     path('quick',views.quick, name='quick'),
     path('detail2',views.detail2, name='detail2'),
+    path('rdetail2',views.rdetail2, name='rdetail2'),
     path('dashboard',views.dashboard,name='dashboard'),
     path('rdashboard',views.rdashboard,name='rdashboard'),
     path('hdashboard',views.hdashboard,name='hdashboard'),

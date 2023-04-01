@@ -1,7 +1,7 @@
 from email import message
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from .models import Signupp,Detail,Rdetail,Odetail,Hdetail,Detail2,Quick
+from .models import Signupp,Detail,Rdetail,Odetail,Hdetail,Detail2,Quick,Rdetail2
 
 # Create your views here.
 #global val
@@ -151,6 +151,7 @@ def hdashboard(request):
 def qdashboard(request):
     return render(request,"qdashboard.html")
 
+
 def admindash(request):
     return render(request,"admindash.html")
 
@@ -167,140 +168,163 @@ def admhos(request):
     return render(request,"admhos.html")
 
 def detail(request):
-    # def val():
-    #     return username
-    if request.method=="POST":
-        fullname=request.POST['fullname']
-        dob=request.POST['dob']
-        email=request.POST['email']
-        mobno=request.POST['mobno']
-        ge=request.POST['ge']
-        age=request.POST['age']
-        bg=request.POST['bg']
-        address=request.POST['address']
-        occupation=request.POST['occupation']
-        weight=request.POST['weight']
-        height=request.POST['height']
-        an=request.POST['an']
-        tmr=request.POST['tmr']
-        ldd=request.POST['ldd']
-        dbo=request.POST['dbo']
-        if len(request.FILES) !=0:
-            image=request.FILES['image']
+    def val(username):
+        return username
+    
+    if request.method == "POST":
+        fullname = request.POST['fullname']
+        dob = request.POST['dob']
+        email = request.POST['email']
+        mobno = request.POST['mobno']
+        ge = request.POST['ge']
+        age = request.POST['age']
+        bg = request.POST['bg']
+        address = request.POST['address']
+        occupation = request.POST['occupation']
+        weight = request.POST['weight']
+        height = request.POST['height']
+        an = request.POST['an']
+        tmr = request.POST['tmr']
+        ldd = request.POST['ldd']
+        dbo = request.POST['dbo']
+        if len(request.FILES) != 0:
+            image = request.FILES['image']
 
-        username=val()
+        username = val(request.user.username)
 
-        #messages.success(request,"Your account has created successfully")
-        det=Detail(username=username,fullname=fullname,dob=dob,email=email,mobno=mobno,ge=ge,age=age,bg=bg,address=address,occupation=occupation,weight=weight,height=height,an=an,tmr=tmr,ldd=ldd,dbo=dbo,image=image)
+        #messages.success(request, "Your account has created successfully")
+        det = Detail(username=username, fullname=fullname, dob=dob, email=email, mobno=mobno, ge=ge, age=age, bg=bg, address=address, occupation=occupation, weight=weight, height=height, an=an, tmr=tmr, ldd=ldd, dbo=dbo, image=image)
         det.save()
-        messages.success(request,"Details added successfully")
-        return render(request,"details2.html")
-        
-
+        messages.success(request, "Details added successfully")
+        return render(request, "details2.html")
+    
     return render(request, "ddetails.html")
+
+
+    
 
 def rdetail(request):
     def val():
-        return username
-    if request.method=="POST":
-        fname=request.POST['fname']
-        rdob=request.POST['rdob']
-        remail=request.POST['remail']
-        rmobno=request.POST['rmobno']
-        rge=request.POST['rge']
-        rage=request.POST['rage']
-        rbg=request.POST['rbg']
-        raddress=request.POST['raddress']
-        roccupation=request.POST['roccupation']
-        rweight=request.POST['rweight']
-        rheight=request.POST['rheight']
-        ran=request.POST['ran']
-        rtmr=request.POST['rtmr']
-        rlrd=request.POST['rlrd']
-        rdbo=request.POST['rdbo']
-        if len(request.FILES) !=0:
-            rimage=request.FILES['rimage']
-
-        username=val()
-
-        #messages.success(request,"Your account has created successfully")
-        rdet=Rdetail(username=username,fname=fname,rdob=rdob,remail=remail,rmobno=rmobno,rge=rge,rage=rage,rbg=rbg,raddress=raddress,roccupation=roccupation,rweight=rweight,rheight=rheight,ran=ran,rtmr=rtmr,rlrd=rlrd,rdbo=rdbo,rimage=rimage)
-        rdet.save()
-        messages.success(request,"Details added successfully")
-        return render(request,"details2.html")
+        return request.user.username
         
+    if request.method == "POST":
+        fname = request.POST['fname']
+        rdob = request.POST['rdob']
+        remail = request.POST['remail']
+        rmobno = request.POST['rmobno']
+        rge = request.POST['rge']
+        rage = request.POST['rage']
+        rbg = request.POST['rbg']
+        raddress = request.POST['raddress']
+        roccupation = request.POST['roccupation']
+        rweight = request.POST['rweight']
+        rheight = request.POST['rheight']
+        ran = request.POST['ran']
+        rtmr = request.POST['rtmr']
+        rlrd = request.POST['rlrd']
+        rdbo = request.POST['rdbo']
+        
+        if len(request.FILES) != 0:
+            rimage = request.FILES['rimage']
+        else:
+            rimage = None
 
+        username = val()
+
+        rdet = Rdetail(username=username, fname=fname, rdob=rdob, remail=remail, rmobno=rmobno, rge=rge, rage=rage, rbg=rbg, raddress=raddress, roccupation=roccupation, rweight=rweight, rheight=rheight, ran=ran, rtmr=rtmr, rlrd=rlrd, rdbo=rdbo, rimage=rimage)
+        rdet.save()
+        messages.success(request, "Details added successfully")
+        return render(request, "rdetail2.html")
+    
     return render(request, "rdetails.html")
 
 
+
 def odetail(request):
-    def val():
-        return username
-    if request.method=="POST":
-        ofname=request.POST['ofname']
-        oemail=request.POST['oemail']
-        omobno=request.POST['omobno']
-        oaddress=request.POST['oaddress']
-        if len(request.FILES) !=0:
-            oimage=request.FILES['oimage']
+    if request.method == "POST":
+        ofname = request.POST['ofname']
+        oemail = request.POST['oemail']
+        omobno = request.POST['omobno']
+        oaddress = request.POST['oaddress']
+        if len(request.FILES) != 0:
+            oimage = request.FILES['oimage']
 
-        username=val()
+        username = request.user.username
 
-        #messages.success(request,"Your account has created successfully")
-        odet=Odetail(username=username,ofname=ofname,oemail=oemail,omobno=omobno,oaddress=oaddress,oimage=oimage)
+        # messages.success(request,"Your account has created successfully")
+        odet = Odetail(username=username, ofname=ofname, oemail=oemail, omobno=omobno, oaddress=oaddress, oimage=oimage)
         odet.save()
-        messages.success(request,"Details added successfully")
-        return render(request,"dashboard.html")
-        
+        messages.success(request, "Details added successfully")
+        return render(request, "odashboard.html")
+
+    def val():
+        return request.user.username
 
     return render(request, "odetails.html")
 
 
 def hdetail(request):
-    def val():
-        return username
-    if request.method=="POST":
-        hfname=request.POST['hfname']
-        hid=request.POST['hid']
-        hemail=request.POST['hemail']
-        hmobno=request.POST['hmobno']
-        haddress=request.POST['haddress']
-        bbp=request.POST['bbp']
-        obp=request.POST['obp']
-        if len(request.FILES) !=0:
-            himage=request.FILES['himage']
+    if request.method == "POST":
+        hfname = request.POST['hfname']
+        hid = request.POST['hid']
+        hemail = request.POST['hemail']
+        hmobno = request.POST['hmobno']
+        haddress = request.POST['haddress']
+        bbp = request.POST['bbp']
+        obp = request.POST['obp']
+        if len(request.FILES) != 0:
+            himage = request.FILES['himage']
 
-        username=val()
+        username = request.user.username
 
-        #messages.success(request,"Your account has created successfully")
-        hdet=Hdetail(username=username,hfname=hfname,hid=hid,hemail=hemail,hmobno=hmobno,haddress=haddress,bbp=bbp,obp=obp,himage=himage)
+        # messages.success(request,"Your account has created successfully")
+        hdet = Hdetail(username=username, hfname=hfname, hid=hid, hemail=hemail, hmobno=hmobno, haddress=haddress, bbp=bbp, obp=obp, himage=himage)
         hdet.save()
-        messages.success(request,"Details added successfully")
-        return render(request,"dashboard.html")
-        
+        messages.success(request, "Details added successfully")
+        return render(request, "hdashboard.html")
+
+    def val():
+        return request.user.username
 
     return render(request, "hdetails.html")
 
 
+
 def detail2(request):
-    # def val():
-    #     return username
-    if request.method=="POST":
-        sid=request.POST['sid']
-        eidn=request.POST['eidn']
-        if len(request.FILES) !=0:
-            dsbg=request.FILES['dsbg']
+    def val(username):
+        return username
+    
+    if request.method == "POST":
+        sid = request.POST['sid']
+        eidn = request.POST['eidn']
+        if len(request.FILES) != 0:
+            dsbg = request.FILES['dsbg']
 
-        username=val()
+        username = val(request.user.username)
 
-        #messages.success(request,"Your account has created successfully")
-        det2=Detail2(username=username,sid=sid,eidn=eidn,dsbg=dsbg)
+        #messages.success(request, "Your account has created successfully")
+        det2 = Detail2(username=username, sid=sid, eidn=eidn, dsbg=dsbg)
         det2.save()
-        messages.success(request,"Details added successfully")
-        return render(request,"dashboard.html")
-        
-
+        messages.success(request, "Details added successfully")
+        return render(request, "dashboard.html")
+    
     return render(request, "details2.html")
+
+
+
+def rdetail2(request):
+    if request.method == "POST":
+        rsid = request.POST['rsid']
+        reidn = request.POST['reidn']
+        if len(request.FILES) != 0:
+            rdsbg = request.FILES['rdsbg']
+
+        rdet2 = Rdetail2.objects.create(rsid=rsid, reidn=reidn, rdsbg=rdsbg, username=request.user.username)
+
+        messages.success(request, "Details added successfully")
+        return render(request, "rdashboard.html")
+    
+    return render(request, "rdetail2.html")
 
 
 def quick(request):
