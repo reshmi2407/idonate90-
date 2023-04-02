@@ -371,10 +371,17 @@ def rprofile(request):
     return render(request,'rprofile.html',{'i':i})
 
 def admdonreq(request):
-    # username=val()
-    up=Detail.objects.all()
-    up1=Detail2.objects.all()
-    return render(request,'admdonreq.html',{'up':up,'up1':up1})
+    # username = request.POST.get('username', '')
+    un = Signupp.objects.all()
+    up = Detail.objects.all()
+    up1 = Detail2.objects.all()
+    return render(request, 'admdonreq.html', {'un': un, 'up': up, 'up1': up1})
+
+# def admdonreq(request):
+#     signups = Signupp.objects.all()
+#     detail = Detail.objects.all()
+#     return render(request, 'admdonreq.html', {'signups': signups,'detail':detail})
+
 
 def admrecreq(request):
     # username=val()

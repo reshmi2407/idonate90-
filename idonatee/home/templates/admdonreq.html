@@ -1173,6 +1173,7 @@
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>Username</th>
                   <th>Full Name</th>
                   <th>Email</th>
                   <th>Contact</th>
@@ -1185,30 +1186,53 @@
               </tr>
           </thead>
           <tbody>
-          {% for i in up %}
-           
-            
-                <tr>
-              <td>{{forloop.counter}}</td>
-              <td>{{i.fullname}}</td>
-              <td>{{i.email}}</td>
-              <td>{{i.mobno}}</td>
-              <td>{{i.bg}}</td>
-              {% comment %} <td><a href="/profile.html">View profile</a></td> {% endcomment %}
-              <td><span class="label label-danger"></span></td>
-                <td><button class="btn btn-primary">assign_status</button></a></td>
-          {% endfor %}
-          {% comment %} {% for j in up1 %}
-              <td> <a href="{{ j.dsbg.url }}"><img src="{{ j.dsbg.url }}" width="100"></a> </td> {% endcomment %}
-
+            {% for k in un %}
+            {% for i in up %}
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{k.username}}</td>
                 
-                {% comment %} <td><a href="{% url 'service_man_detail' i.id %}" ><button class="btn btn-info">View Details<i class="fa fa-eye"></i></button></a></td> {% endcomment %}
+                
+                
+                  <td>{{i.fullname}}</td>
+                  <td>{{i.email}}</td>
+                  <td>{{i.mobno}}</td>
+                  <td>{{i.bg}}</td>
+                  <td><a href="#">View profile</a></td>
+                  <td><span class="label label-danger"></span></td>
+                  <td><button class="btn btn-primary">assign_status</button></a></td>
+                 </tr>
+                  {% endfor %}
+            {% endfor %}
+                </tbody>
          
+            {% comment %} {% for j in up1 %}
+              <td><a href="{{ j.dsbg.url }}"><img src="{{ j.dsbg.url }}" width="100"></a></td> 
+            {% endcomment %}
+          
+            {% comment %} <td><a href="{% url 'service_man_detail' i.id %}" ><button class="btn btn-info">View Details<i class="fa fa-eye"></i></button></a></td> {% endcomment %}
+          {% comment %} 
         
-              </tr>  
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Date of Birth</th>
+              <th>Age</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for signup in signups %}
+              {% for detail in signup.detail_set.all %}
+                <tr>
+                  <td>{{ detail.fullname }}</td>
+                  <td>{{ detail.dob }}</td>
+                  <td>{{ detail.age }}</td>
+                </tr>
+              {% endfor %}
+            {% endfor %}
+          </tbody>
+         {% endcomment %}
           
-          
-      </tbody>
   </table>
   
     
