@@ -1,0 +1,221 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %} 
+<head>
+
+    
+    <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="{% static '/css/details.css' %}">
+
+     
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+</head>
+{% load static %} 
+
+<body>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <label  id="mm"><center><strong><b>Message:</strong>{{ message }}</b></center></label>
+    
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    {% endfor %}
+
+    <div class="container">
+        <header>iDonate-Blood Registration</header>
+
+        <form action="/quick"  method="POST" class="form" enctype="multipart/form-data">
+            {%  csrf_token %}
+            <div class="form first">
+                <div class="details personal">
+                
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Full Name</label>
+                            <input type="text" id="qfname" name="qfname" placeholder="Enter your name" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Date of Birth</label>
+                            <input type="date" id="qdob" name="qdob" placeholder="Enter birth date" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="text" id="qemail" name="qemail" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Mobile Number</label>
+                            <input type="number" id="qmobno" name="qmobno" placeholder="Enter mobile number" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Gender</label>
+                            <select id="qge" name="qge" required>
+                                <option  disabled selected>Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+
+
+                        </div>
+
+                        <div class="input-field">
+                            <label>Age</label>
+                            <input type="number" id="qage" name="qage" placeholder="Enter Your Age" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Blood Group</label>
+                            <select id="qbg" name="qbg" required>
+                                <option  disabled selected>Your Blood Group</option>
+                                <option>A+</option>
+                                <option>B+</option>
+                                <option>AB+</option>
+                                <option>O+</option>
+                                <option>A-</option>
+                                <option>B-</option>
+                                <option>AB-</option>
+                                <option>O-</option>
+                            </select>
+
+
+                        </div>
+
+                        <div class="input-field">
+                            <label>Address</label>
+                            <input type="text" id="address" name="address" placeholder="Enter your Address" required>
+                        </div>
+                        
+                        {% comment %} <div class="input-field">
+                            <label>Occupation</label>
+                            <input type="text" id="occupation" name="occupation" placeholder="Enter your Occupation" required>
+                        </div> {% endcomment %}
+                        
+            
+                        <div class="input-field">
+                            <label>Enter Your Weight</label>
+                            <input type="number" id="qweight" name="qweight" placeholder="Enter your Weight" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Enter Your Height</label>
+                            <input type="number" id="qheight" name="qheight" placeholder="Enter your Height" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Allergic/Not ?</label>
+                            <select id="qan" name="qan" required>
+                                <option  disabled selected>Allergic/Not ?</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+
+
+                        </div>
+
+                        <div class="input-field">
+                            <label>Taking Medicine Regularly ?</label>
+                            <select id="qtmr" name="qtmr" required>
+                                <option  disabled selected>Taking Medicine Regularly</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+
+
+                        </div>
+
+                        {% comment %} <div class="input-field">
+                            <label>Lastly Donated Date</label>
+                            <input type="date" id="ldd" name="ldd" placeholder="Enter the date" >
+                        </div>
+
+
+                        <div class="input-field">
+                            <label>Donated Blood/Organ</label>
+                            <select id="dbo" name="dbo" >
+                                <option  disabled selected>Donated Blood/Organ</option>
+                                <option>Blood</option>
+                                <option>Kidney</option>
+                                <option>Liver</option>
+                                <option>Lungs</option>
+                                <option>Heart</option>
+                                <option>Pancreas</option>
+                                <option>Intestine</option>
+                                <option>Eye</option>
+                            </select>
+
+ {% endcomment %}
+                        </div>
+
+<!--
+                <div class="details ID">
+                    <span class="title">Identity Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>ID Type</label>
+                            <select id="idtype" name="idtype" required>
+                                <option  disabled selected>Select ID Type</option>
+                                <option>Aadhar</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label>ID Number</label>
+                            <input type="number" id="idno"  name="idno" placeholder="Enter ID number" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Occupation</label>
+                            <input type="text"  id="job" name="job" placeholder="Enter your occupation" required>
+                        </div>
+                        -->
+                        
+                        {% comment %} <div class="card-box">
+                            <label>Image</label>
+                            <input type="file" id="image" name="image" placeholder="Upload your Image" required>
+                        </div> {% endcomment %}
+
+
+                        <div class="fields">
+                            <div class="input-field">
+                                <label>ID Type</label>
+                                <select id="qidtype" name="qidtype" required>
+                                    <option  disabled selected>Select ID Type</option>
+                                    <option>Aadhar</option>
+                                    <option>Driving Licence</option>
+                                    <option>Voter's ID</option>
+                                </select>
+                            </div>
+    
+                            {% comment %} <div class="input-field">
+                                <label>ID Number</label>
+                                <input type="number" id="idno"  name="idno" placeholder="Enter ID number" required>
+                            </div>
+                     {% endcomment %}
+
+                        <div class="card-box">
+                            <label>Image of ID </label>
+                            <input type="file" id="qimage" name="qimage" placeholder="Upload Image of identity card" required>
+                        </div>
+
+                        <button class="sumbit">
+                            <span class="btnText">SUBMIT</span>
+                            <i class="uil uil-navigator"></i>
+                        </button>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+</form>
+</div>
+</body>
+</html>
