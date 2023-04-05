@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+ 
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="{% static '/css/details.css' %}">
+
+     
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+</head>
+{% load static %} 
+
+<body>
+    {% comment %} {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <label  id="mm"><center><strong><b>Message:</strong>{{ message }}</b></center></label>
+    
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    {% endfor %} {% endcomment %}
+
+    <div class="container">
+        <header>iDonate Registration</header>
+
+        <form action="/detail2"  method="POST" enctype="multipart/form-data">
+            {%  csrf_token %}
+            <div class="form first">
+                <div class="details personal">
+                
+
+                    
+                        <div class="input-field">
+                            <label>Select ID</label>
+                            <select id="sid" name="sid" required>
+                                <option  disabled selected>Select ID</option>
+                                <option>Aadhar ID</option>
+                                <option>Licence</option>
+                                <option>Voter's ID</option>
+                            </select>
+
+
+                        </div>
+
+                        <div class="input-field">
+                            <label>ID Number</label>
+                            <input type="number" id="eidn" name="eidn" placeholder="Enter ID Number" required>
+                        </div>
+
+
+                        </div>
+                        <div class="card-box">
+                            <label>Document showing Blood Group</label>
+                            <input type="file" id="dsbg" name="dsbg" placeholder="Upload Document" required>
+                        </div>
+                    
+                        <button class="submit">
+                            <span class="btnText">SUBMIT</span>
+                            <i class="uil uil-navigator"></i>
+                        </button>
+                </div> 
+            </div>
+        </div>
+    </div> 
+</div>
+</form>
+</div>
+</body>
+</html>

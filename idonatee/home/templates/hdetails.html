@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% load static %} 
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="{% static '/css/details.css' %}">
+
+     
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+</head>
+{% load static %} 
+
+<body>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <label  id="mm"><center><strong><b>Message:</strong>{{ message }}</b></center></label>
+    
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    {% endfor %}
+
+    <div class="container">
+        <header>iDonate  Registration</header>
+
+        <form action="/hdetail"  method="POST" enctype="multipart/form-data">
+            {%  csrf_token %}
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Hospital Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Full Name</label>
+                            <input type="text" id="hfname" name="hfname" placeholder="Enter your name" required>
+                        </div>
+
+                        
+                        <div class="input-field">
+                            <label>Hospital ID</label>
+                            <input type="text" id="hid" name="hid" placeholder="Enter the id" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="text" id="hemail" name="hemail" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Phone Number</label>
+                            <input type="number" id="hmobno" name="hmobno" placeholder="Enter phone number" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Address</label>
+                            <input type="text" id="haddress" name="haddress" placeholder="Enter your Address" required>
+                        </div>
+
+
+                        <div class="input-field">
+                            <label>Blood Bank Presented/Not</label>
+                            <select id="bbp" name="bbp" required>
+                                <option  disabled selected>Blood Bank Presented/Not</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+
+
+                        </div>
+
+                        <div class="input-field">
+                            <label>Organ Bank Presented/Not</label>
+                            <select id="obp" name="obp" required>
+                                <option  disabled selected>Organ Bank Presented/Not</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+
+
+                        </div>
+
+                        <div class="card-box">
+                            <label>Upload Licence Approval Certificate</label>
+                            <input type="file" id="himage" name="himage" placeholder="Upload image" required>
+                        </div>
+                        <button class="sumbit">
+                            <span class="btnText">SUBMIT</span>
+                            <i class="uil uil-navigator"></i>
+                        </button>
+                </div> 
+            </div>
+        </div>
+    </div> 
+</div>
+</form>
+</div>
+</body>
+</html>
