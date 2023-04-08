@@ -25,6 +25,7 @@ urlpatterns = [
     path('rprofile',views.rprofile, name='rprofile'),
     path('recsearch/<str:username>/',views.recsearch, name='recsearch'),
     path('donsearch/<str:username>/',views.donsearch, name='donsearch'),
+    path('acceptreject/<str:username>/', views.acceptreject, name='acceptreject'),
     path('admindash',views.admindash, name='admindash'),
     path('admdonar',views.admdonar, name='admdonar'),
     path('admdonreq',views.admdonreq, name='admdonreq'),

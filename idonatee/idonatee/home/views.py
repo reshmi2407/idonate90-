@@ -1,5 +1,5 @@
 from email import message
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 from django.contrib import messages
 from .models import Signupp,Detail,Rdetail,Odetail,Hdetail,Detail2,Quick,Rdetail2
 
@@ -342,9 +342,32 @@ def rprofile(request):
         break
  return render(request,'rprofile.html',{'i':i})
 
-def regitsearch(request, username):
+def recsearch(request, username):
     r_p = Rdetail.objects.filter(username=username).first()
     return render(request, 'rprofile.html', {'i': r_p})
+
+# def acceptreject(request, username):
+#     d_p = Detail.objects.filter(username=username).first()
+#     return render(request, 'admacceptreject.html', {'i': d_p})
+
+
+def acceptreject(request, username):
+    d_p = Detail.objects.filter(username=username).first()
+    if request.method == "POST":
+        status = request.POST.get("password")
+        if status == "reject":
+            signup = Signupp.objects.filter(username=username).first()
+            if signup:
+                signup.delete()
+                return redirect("/admdonar")
+            else:
+                messages.error(request, "Signup not found.")
+        elif status == "accept":
+            # Handle the accept case here
+            pass  # replace this with your code
+    return render(request, 'admacceptreject.html', {'i': d_p})
+
+
 
 def donsearch(request, username):
     d_p = Detail.objects.filter(username=username).first()
@@ -356,6 +379,7 @@ def admdonreq(request):
     up = Detail.objects.all()
     up1 = Detail2.objects.all()
     return render(request, 'admdonreq.html', {'up': up, 'up1': up1})
+
 
 
 def admrecreq(request):
