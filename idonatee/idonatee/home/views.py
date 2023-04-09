@@ -83,27 +83,27 @@ def login(request):
             return redirect('home')
 
     return render(request,"log.html")
+
 def adminlogin(request):
- def val():
-    return username
- 
- if request.method =='POST':
-        username=request.POST['username']
-        password=request.POST['password']
+    def val():
+        return username
 
-        #credential=Signupp.objects.all()
-        flag=0
-        #for i in credential:
-        if username==username and password==password:
-                flag=1
-                username=val()
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
 
-                return render(request,"admindash.html")
-        if flag==0:
-            messages.error(request,"Wrong Credentials")
-            return redirect('home')
+        if username == 'reshmi' and password == 'reshmi':
+            username = val()
+            return render(request, "admindash.html")
+        else:
+            context = {
+                'error_message': 'Wrong Credentials'
+            }
+            return render(request, 'index.html', context)
 
- return render(request,"adminlogin.html")
+    return render(request, "adminlogin.html")
+
+
 
 def admin_home(request):
     return render(request,"admindash.html")

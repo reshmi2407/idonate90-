@@ -1,34 +1,3 @@
- {% comment %} {% extends 'admin_navigation.html' %} {% endcomment %}
- {% comment %} {% load static %}
-{% block p %}
-
-     <div class="signup-main" style="width:100%;margin-top:0">
-    	 <div class="signup-head">
-				<h1>Change Status</h1>
-			</div>
-			<div class="signup-block">
-				<form action="" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-					<input type="text" name="id" value="{{user.username}}" >
-                    <select name="stat" style="width:100%;padding:8px;margin-top:2%;border:1px solid lightgrey ">
-                        <option value="Accept">Accept</option>
-                        <option value="Reject">Reject</option>
-                    </select>
-
-					<input type="submit" value="Update Status" style="margin-top:10%">
-				</form>
-			</div>
-    </div>
-
-{% if error %}
-<script>
-    alert('Update status Successfully');
-    window.location = "{% url 'admdonreq' %}";
-</script>
-{% endif %}
-    {% endblock %} {% endcomment %}
-
-
 
   <div class="login-box">
   <h2>CHANGE STATUS</h2>
@@ -50,11 +19,11 @@
       <span></span>
       <span></span>
       <span></span>
-    <button type="submit">UPDATE STATUS</button>
+    <button type="submit" id='update-status-btn'>UPDATE STATUS</button>
   </form>
 </div>
 
-{% comment %} <script>
+ <script>
   // Get the update status button
   var updateStatusBtn = document.getElementById("update-status-btn");
 
@@ -63,8 +32,7 @@
     // Show a popup dialog box
     alert("Status updated!");
   });
-</script> {% endcomment %}
-
+</script> 
 
 
   <style>
