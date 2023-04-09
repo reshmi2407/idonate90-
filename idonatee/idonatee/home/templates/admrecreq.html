@@ -1194,8 +1194,8 @@
                   <td>{{user.rmobno}}</td>
                   <td>{{user.rbg}}</td>
                   <td><a href="/recsearch/{{user.username}}">View profile</a></td>
-                  <td><span class="label label-danger"></span></td>
-                  <td><button class="btn btn-primary">assign_status</button></a></td>
+                   <td><span class="label label-danger">{{user.status}}</span></td>
+                       <td> <a href="/recacceptreject/{{user.username}}"><button type="submit" class="btn btn-danger">assign_status</button></a>
                  </tr>
             {% endfor %}
       </tbody>

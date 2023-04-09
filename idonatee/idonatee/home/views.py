@@ -1,5 +1,5 @@
 from email import message
-from django.shortcuts import get_object_or_404, render,redirect
+from django.shortcuts import render,redirect
 from django.contrib import messages
 from .models import Signupp,Detail,Rdetail,Odetail,Hdetail,Detail2,Quick,Rdetail2
 
@@ -346,26 +346,112 @@ def recsearch(request, username):
     r_p = Rdetail.objects.filter(username=username).first()
     return render(request, 'rprofile.html', {'i': r_p})
 
-# def acceptreject(request, username):
-#     d_p = Detail.objects.filter(username=username).first()
-#     return render(request, 'admacceptreject.html', {'i': d_p})
 
 
-def acceptreject(request, username):
+
+def donacceptreject(request, username):
+    def don_delete_user_data(username):
+        try:
+            user_detail = Detail.objects.filter(username=username).first()
+
+            if user_detail:
+                user_detail.delete()
+
+            user_signup = Signupp.objects.filter(username=username).first()
+
+            if user_signup:
+                user_signup.delete()
+
+            user_detail2 = Detail2.objects.filter(username=username).first()
+
+            if user_detail2:
+                user_detail2.delete()
+
+            
+            return True
+
+        except Exception as e:
+            # Handle any exceptions that may occur
+            print(e)
+            return False
+
     d_p = Detail.objects.filter(username=username).first()
     if request.method == "POST":
         status = request.POST.get("password")
         if status == "reject":
+            if don_delete_user_data(username):
+                messages.success(request, "User data deleted successfully.")
+            else:
+                messages.error(request, "Error deleting user data.")
             signup = Signupp.objects.filter(username=username).first()
             if signup:
                 signup.delete()
-                return redirect("/admdonar")
             else:
                 messages.error(request, "Signup not found.")
+            return redirect("/admdonar")
         elif status == "accept":
             # Handle the accept case here
             pass  # replace this with your code
-    return render(request, 'admacceptreject.html', {'i': d_p})
+    return render(request, 'admDacceptreject.html', {'i': d_p})
+
+
+def recacceptreject(request, username):
+    def rec_delete_user_data(username):
+        try:
+            user_detail = Rdetail.objects.filter(username=username).first()
+
+            if user_detail:
+                user_detail.delete()
+
+            user_signup = Signupp.objects.filter(username=username).first()
+
+            if user_signup:
+                user_signup.delete()
+
+            user_detail2 = Rdetail2.objects.filter(username=username).first()
+
+            if user_detail2:
+                user_detail2.delete()
+
+            
+            return True
+
+        except Exception as e:
+            # Handle any exceptions that may occur
+            print(e)
+            return False
+
+    d_p = Rdetail.objects.filter(username=username).first()
+    if request.method == "POST":
+        status = request.POST.get("password")
+        if status == "reject":
+            if rec_delete_user_data(username):
+                messages.success(request, "User data deleted successfully.")
+            else:
+                messages.error(request, "Error deleting user data.")
+            signup = Signupp.objects.filter(username=username).first()
+            if signup:
+                signup.delete()
+            else:
+                messages.error(request, "Signup not found.")
+            return redirect("/admdonar")
+        elif status == "accept":
+            # Handle the accept case here
+            pass  # replace this with your code
+    return render(request, 'admRacceptreject.html', {'i': d_p})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
