@@ -31,6 +31,22 @@ class Detail(models.Model):
     dbo=models.CharField(max_length=10)
     image=models.ImageField(upload_to='pictures')
 
+class Edit(models.Model):
+    username=models.CharField(max_length=20)
+    don_edit_email=models.EmailField()
+    don_edit_mobno=models.IntegerField()
+    don_edit_address=models.CharField(max_length=30)
+    don_edit_occupation=models.CharField(max_length=10)
+    don_edit_weight=models.IntegerField()
+    don_edit_height=models.IntegerField()
+    don_edit_an=models.CharField(max_length=10)
+    don_edit_tmr=models.CharField(max_length=10)
+    don_edit_ldd=models.DateField()
+    don_edit_sid=models.CharField(max_length=10)
+    don_edit_eidn=models.CharField(max_length=10)
+    don_edit_dsbg=models.ImageField(upload_to='pictures')
+
+
 class Rdetail(models.Model):
     username=models.CharField(max_length=20)
     fname=models.CharField(max_length=20)
@@ -58,6 +74,11 @@ class Odetail(models.Model):
     oaddress=models.CharField(max_length=30)
     oimage=models.ImageField(upload_to='pictures')
 
+class Odetail2(models.Model):
+    username=models.CharField(max_length=20)
+    olicenceid=models.CharField(max_length=20)
+    oiimage=models.ImageField(upload_to='pictures')
+
 class Hdetail(models.Model):
     username=models.CharField(max_length=20)
     hfname=models.CharField(max_length=20)
@@ -68,6 +89,11 @@ class Hdetail(models.Model):
     bbp=models.CharField(max_length=10)
     obp=models.CharField(max_length=10)
     himage=models.ImageField(upload_to='pictures')
+
+class Hdetail2(models.Model):
+    username=models.CharField(max_length=20)
+    hlicenceid=models.CharField(max_length=20)
+    hiimage=models.ImageField(upload_to='pictures')
 
 class Detail2(models.Model):
     username=models.CharField(max_length=20)

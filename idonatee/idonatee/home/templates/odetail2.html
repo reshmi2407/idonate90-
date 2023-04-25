@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %} 
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="{% static '/css/details.css' %}">
+
+     
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+</head>
+{% load static %} 
+
+<body>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <label  id="mm"><center><strong><b>Message:</strong>{{ message }}</b></center></label>
+    
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    {% endfor %}
+
+    <div class="container">
+        <header>iDonate  Registration</header>
+
+        <form action="/odetail2"  method="POST" enctype="multipart/form-data">
+            {%  csrf_token %}
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Organization Identity Details</span>
+
+                    <div class="fields">
+                        
+                        
+
+                        <div class="input-field">
+                            <label>Licence Id</label>
+                            <input type="text" id="olicenceid" name="olicenceid" placeholder="Enter Licence Id" required>
+                        </div>
+                    
+                        <div class="card-box">
+                            <label>Upload Licence Approval Cerficate</label>
+                            <input type="file" id="oiimage" name="oiimage" placeholder="Upload image" required>
+                        </div>
+                        <button class="sumbit">
+                            <span class="btnText">SUBMIT</span>
+                            <i class="uil uil-navigator"></i>
+                        </button>
+                </div> 
+            </div>
+        </div>
+    </div> 
+</div>
+</form>
+</div>
+</body>
+</html>
+
+
+    

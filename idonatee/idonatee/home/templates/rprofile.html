@@ -49,7 +49,7 @@
 
       <div class="profile">
         <img src="{{i.rimage.url}}" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="#">{{i.fullname}}</a></h1>
+        <h1 class="text-light"><a href="#">{{i.fname}}</a></h1>
         <div class="social-links mt-3 text-center">
           <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
           <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -61,7 +61,7 @@
 
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>HOME</span></a></li>
+          <li><a href="/rdashboard" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>HOME</span></a></li>
           <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>ABOUT</span></a></li>
           <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>MORE ABOUT ME</span></a></li>
           <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>POSTS</span></a></li>
@@ -223,28 +223,31 @@
     </section>
   -->
     <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio section-bg">
+    {% comment %} <section id="portfolio" class="portfolio section-bg">
       <div class="container">
 
         <div class="section-title">
-          <h2>Posts</h2>
-        </div>
+         
 
-        {% load static %} 
-
-
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="{{i.rimage.url}}" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="{{i.rimage.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                <a href="#" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
+        
+            <h2>Identity Details</h2>
           </div>
+  
+          {% load static %} 
+          <i class="bi bi-chevron-right"></i> <strong>Id:</strong> <span>{{j.rsid}}</span></li><br>
+          <i class="bi bi-chevron-right"></i> <strong>Id Number:</strong> <span>{{j.reidn}}</span></li>
 
+  
+          <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+  
+
+            <div class="row">
+              <div class="col-lg-4" data-aos="fade-right">
+                <img src="{{j.rdsbg.url}}" class="img-fluid" alt="hey">
+              </div>
+  
+
+        
           <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">
               <img src="" class="img-fluid" alt="">
@@ -332,8 +335,8 @@
 
   
 
-            
-  </main><!-- End #main -->
+      {% endcomment %}      
+  </main><!-- End #main --> 
 
   
   {% load static %} 
@@ -344,7 +347,7 @@
   <script src="{% static '/vendor/aos/aos.js' %}"></script>
   <script src="{% static '/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static '/vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static '/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="{% static '/vendor/isotope-layout/isotope.pkgd.min.js'%}"></script>
   <script src="{% static '/vendor/swiper/swiper-bundle.min.js' %}"></script>
   <script src="{% static '/vendor/typed.js/typed.min.js' %}"></script>
   <script src="{% static '/vendor/waypoints/noframework.waypoints.js' %}"></script>

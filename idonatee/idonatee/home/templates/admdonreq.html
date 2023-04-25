@@ -1180,8 +1180,9 @@
                   <th>Bloodgroup</th>
                   <th>profile</th>
 
-                  
-                    <th>status</th>
+                  <th>Identity</th>
+
+                    {% comment %} <th>status</th> {% endcomment %}
                     <th>Assign</th>
                   
               </tr>
@@ -1197,8 +1198,8 @@
                   <td>{{user.mobno}}</td>
                   <td>{{user.bg}}</td>
                   <td><a href="/donsearch/{{user.username}}">View profile</a></td>
-                  
-                  <td><span class="label label-danger">{{user.status}}</span></td>
+                  <td><a href="/donidentity/{{user.username}}">View Identity</a></td>
+                  {% comment %} <td><span class="label label-danger">{{user.status}}</span></td> {% endcomment %}
                        <td> <a href="/donacceptreject/{{user.username}}"><button type="submit" class="btn btn-danger">assign_status</button></a>
                    
                 </td>

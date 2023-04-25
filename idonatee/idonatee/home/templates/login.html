@@ -31,8 +31,19 @@
 					<input type="text" id="username" name="username" placeholder="User name" required="">
 					<input type="email" id="email" name="email" placeholder="Email" required="">
 					<input type="password" id="password" name="password" placeholder="Password" required="">
-					<button>Sign up</button>
+					<button type="submit" id='update-signup-btn'>Sign up</button>
 				</form>
+			
+			<script>
+				// Get the update status button
+				var updateStatusBtn = document.getElementById("update-signup-btn");
+			  
+				// Add a click event listener to the button
+				updateStatusBtn.addEventListener("click", function() {
+				  // Show a popup dialog box
+				  alert("Signup updated!");
+				});
+			  </script> 
 			</div>
 
 			<div class="login">
@@ -42,8 +53,18 @@
 					<label for="chk" aria-hidden="true">Login</label>
 					<input type="username" id="username" name="username" placeholder="User name" required="">
 					<input type="password" id="password" name="password" placeholder="Password" required="">
-					<button>Login</button>
+					<button type="submit" id='update-login-btn'>Login</button>
 				</form>
+				<script>
+					// Get the update status button
+					var updateStatusBtn = document.getElementById("update-login-btn");
+				  
+					// Add a click event listener to the button
+					updateStatusBtn.addEventListener("click", function() {
+					  // Show a popup dialog box
+					  alert("Signup updated!");
+					});
+				  </script> 
 			</div>
 	</div>
 </body>

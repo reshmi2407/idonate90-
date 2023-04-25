@@ -1,7 +1,7 @@
 from email import message
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from .models import Signupp,Detail,Rdetail,Odetail,Hdetail,Detail2,Quick,Rdetail2
+from .models import Signupp,Detail,Rdetail,Odetail,Odetail2,Hdetail,Hdetail2,Detail2,Quick,Rdetail2,Edit
 
 # Create your views here.
 #global val
@@ -17,12 +17,12 @@ def signup(request):
         role=request.POST['role']
 
         if Signupp.objects.filter(username=username).exists() or Signupp.objects.filter(email=email).exists():
-            messages.error(request,"User already exists")
+            # messages.error(request,"User already exists")
             return render(request,"log.html")
             
         myprofile=Signupp(username=username,email=email,password=password,role=role)
         myprofile.save()
-        messages.success(request,"Your account has been created successfully")
+        # messages.success(request,"Your account has been created successfully")
         global val
         def val():
             return username
@@ -35,7 +35,7 @@ def signup(request):
         elif role=='Receiver User':
             return render(request,"rdetails.html")
         else:
-            messages.error(request,"Invalid Role")
+            # messages.error(request,"Invalid Role")
             return redirect('home')
     
     return render(request,"signup.html")
@@ -79,7 +79,7 @@ def login(request):
                 
                     return render(request,"odashboard.html")
         if flag==0:
-            messages.error(request,"Wrong Credentials")
+            # messages.error(request,"Wrong Credentials")
             return redirect('home')
 
     return render(request,"log.html")
@@ -92,7 +92,7 @@ def adminlogin(request):
         username = request.POST['username']
         password = request.POST['password']
 
-        if username == 'reshmi' and password == 'reshmi':
+        if username == 'idonate' and password == 'idonate':
             username = val()
             return render(request, "admindash.html")
         else:
@@ -174,6 +174,29 @@ def detail(request):
     
     return render(request, "ddetails.html")
 
+def edit(request):
+    if request.method == "POST":
+        don_edit_email = request.POST['don_edit_email']
+        don_edit_mobno = request.POST['don_edit_mobno']
+        don_edit_address = request.POST['don_edit_address']
+        don_edit_occupation = request.POST['don_edit_occupation']
+        don_edit_weight = request.POST['don_edit_weight']
+        don_edit_height = request.POST['don_edit_height']
+        don_edit_an = request.POST['don_edit_an']
+        don_edit_tmr = request.POST['don_edit_tmr']
+        don_edit_ldd = request.POST['don_edit_ldd']
+        don_edit_sid = request.POST['don_edit_sid']
+        don_edit_eidn = request.POST['don_edit_eidn']
+        if len(request.FILES) != 0:
+            don_edit_dsbg = request.FILES['don_edit_dsbg']
+        username=val()
+        #messages.success(request, "Your account has created successfully")
+        edit = Edit(don_edit_email = don_edit_email,don_edit_mobno = don_edit_mobno,don_edit_address = don_edit_address,don_edit_occupation = don_edit_occupation,don_edit_weight = don_edit_weight,don_edit_height = don_edit_height,don_edit_an = don_edit_an,don_edit_tmr=don_edit_tmr,don_edit_ldd = don_edit_ldd,don_edit_sid = don_edit_sid,don_edit_eidn = don_edit_eidn,don_edit_dsbg = don_edit_dsbg)
+        edit.save()
+        messages.success(request, "Details added successfully")
+        return render(request, "dashboard.html")
+    
+    return render(request, "edit.html")
 
     
 
@@ -226,16 +249,76 @@ def odetail(request):
         # messages.success(request,"Your account has created successfully")
         odet = Odetail(username=username, ofname=ofname, oemail=oemail, omobno=omobno, oaddress=oaddress, oimage=oimage)
         odet.save()
-        messages.success(request, "Details added successfully")
-        return render(request, "odashboard.html")
+        # messages.success(request, "Details added successfully")
+        return render(request, "odetail2.html")
 
     return render(request, "odetails.html")
+
+
+def odetail2(request):
+    if request.method == "POST":
+        olicenceid = request.POST['olicenceid']
+        if len(request.FILES) != 0:
+            oiimage = request.FILES['oiimage']
+
+        username=val()
+
+        # messages.success(request,"Your account has created successfully")
+        odet2 = Odetail2(username=username, olicenceid=olicenceid ,oiimage=oiimage)
+        odet2.save()
+        #messages.success(request, "Details added successfully")
+        return render(request, "odashboard.html")
+
+    return render(request, "odetail2.html")
+
+def oprofile(request):
+
+    username=val()
+    user_profile=Odetail.objects.all()
+    for i in user_profile:
+        if username==i.username:
+            break
+
+    user_details=Odetail2.objects.all()
+    for j in user_details:
+        if username==j.username:
+            break
+    return render(request,'oprofile.html',{'i':i,'j':j})
+
+def oidentity(request):
+    username=val()
+    user_profile=Odetail.objects.all()
+    for i in user_profile:
+        if username==i.username:
+            break
+
+    user_details=Odetail2.objects.all()
+    for j in user_details:
+        if username==j.username:
+            break
+    return render(request,'oidentity.html',{'i':i,'j':j})
+
+def orgsearch(request, username):
+    r_p = Odetail.objects.filter(username=username).first()
+    r2_p = Odetail2.objects.filter(username=username).first()
+    return render(request, 'oprofile.html', {'i': r_p,'j':r2_p})
+
+def orgidentity(request, username):
+    r_p = Odetail.objects.filter(username=username).first()
+    r2_p = Odetail2.objects.filter(username=username).first()
+    return render(request, 'oidentity.html', {'i': r_p,'j':r2_p})
+
+def admorgreq(request):
+
+    up = Odetail.objects.all()
+    up1 = Odetail2.objects.all()
+    return render(request, 'admorgreq.html', {'up': up, 'up1': up1})
+
 
 
 def hdetail(request):
     if request.method == "POST":
         hfname = request.POST['hfname']
-        hid = request.POST['hid']
         hemail = request.POST['hemail']
         hmobno = request.POST['hmobno']
         haddress = request.POST['haddress']
@@ -247,12 +330,29 @@ def hdetail(request):
         username=val()
 
         # messages.success(request,"Your account has created successfully")
-        hdet = Hdetail(username=username, hfname=hfname, hid=hid, hemail=hemail, hmobno=hmobno, haddress=haddress, bbp=bbp, obp=obp, himage=himage)
+        hdet = Hdetail(username=username, hfname=hfname, hemail=hemail, hmobno=hmobno, haddress=haddress, bbp=bbp, obp=obp, himage=himage)
         hdet.save()
         messages.success(request, "Details added successfully")
-        return render(request, "hdashboard.html")
+        return render(request, "hdetail2.html")
 
     return render(request, "hdetails.html")
+
+
+def hdetail2(request):
+    if request.method == "POST":
+        hlicenceid = request.POST['hlicenceid']
+        if len(request.FILES) != 0:
+            hiimage = request.FILES['hiimage']
+
+        username=val()
+
+        # messages.success(request,"Your account has created successfully")
+        hdet2 = Hdetail2(username=username, hlicenceid=hlicenceid ,hiimage=hiimage)
+        hdet2.save()
+        #messages.success(request, "Details added successfully")
+        return render(request, "hdashboard.html")
+
+    return render(request, "hdetail2.html")
 
 
 
@@ -312,11 +412,11 @@ def quick(request):
         if len(request.FILES) !=0:
             qimage=request.FILES['qimage']
         
-        username=val()
+       
 
 
         #messages.success(request,"Your account has created successfully")
-        detq=Quick(username=username,qfname=qfname,qdob=qdob,qemail=qemail,qmobno=qmobno,qge=qge,qage=qage,qbg=qbg,qweight=qweight,qheight=qheight,qan=qan,qtmr=qtmr,qidtype=qidtype,qimage=qimage)
+        detq=Quick(qfname=qfname,qdob=qdob,qemail=qemail,qmobno=qmobno,qge=qge,qage=qage,qbg=qbg,qweight=qweight,qheight=qheight,qan=qan,qtmr=qtmr,qidtype=qidtype,qimage=qimage)
         detq.save()
         messages.success(request,"Details added successfully")
         return render(request,"qdashboard.html")
@@ -324,27 +424,80 @@ def quick(request):
 
 
 def profile(request):
- 
- username=val()
- d_p=Detail.objects.all()
- for i in d_p:
-    if username==i.username:
-        break
- return render(request,'profile.html',{'i':i})
+    
+    username=val()
+    user_profile=Detail.objects.all()
+    for i in user_profile:
+        if username==i.username:
+            break
+
+    user_details=Detail2.objects.all()
+    for j in user_details:
+        if username==j.username:
+            break
+    return render(request,'profile.html',{'i':i,'j':j})
+
+
+
+def didentity(request):
+    username=val()
+    user_profile=Detail.objects.all()
+    for i in user_profile:
+        if username==i.username:
+            break
+
+    user_details=Detail2.objects.all()
+    for j in user_details:
+        if username==j.username:
+            break
+    return render(request,'didentity.html',{'i':i,'j':j})
+
+
+def donidentity(request, username):
+    d_p = Detail.objects.filter(username=username).first()
+    d2_p=Detail2.objects.filter(username=username).first()
+    return render(request, 'didentity.html', {'i': d_p,'j':d2_p})
 
 
 def rprofile(request):
 
- username=val()
- r_p=Rdetail.objects.all()
- for i in r_p:
-    if username==i.username:
-        break
- return render(request,'rprofile.html',{'i':i})
+    username=val()
+    user_profile=Rdetail.objects.all()
+    for i in user_profile:
+        if username==i.username:
+            break
+
+    user_details=Rdetail2.objects.all()
+    for j in user_details:
+        if username==j.username:
+            break
+    return render(request,'rprofile.html',{'i':i,'j':j})
+
+def ridentity(request):
+
+    username=val()
+    user_profile=Rdetail.objects.all()
+    for i in user_profile:
+        if username==i.username:
+            break
+
+    user_details=Rdetail2.objects.all()
+    for j in user_details:
+        if username==j.username:
+            break
+    return render(request,'ridentity.html',{'i':i,'j':j})
+
+def recidentity(request, username):
+    r_p = Rdetail.objects.filter(username=username).first()
+    r2_p = Rdetail2.objects.filter(username=username).first()
+    return render(request, 'ridentity.html', {'i': r_p,'j':r2_p})
+
+
 
 def recsearch(request, username):
     r_p = Rdetail.objects.filter(username=username).first()
-    return render(request, 'rprofile.html', {'i': r_p})
+    r2_p = Rdetail2.objects.filter(username=username).first()
+    return render(request, 'rprofile.html', {'i': r_p,'j':r2_p})
 
 
 
@@ -441,23 +594,56 @@ def recacceptreject(request, username):
     return render(request, 'admRacceptreject.html', {'i': d_p})
 
 
+def orgacceptreject(request, username):
+    def org_delete_user_data(username):
+        try:
+            user_detail = Odetail.objects.filter(username=username).first()
 
+            if user_detail:
+                user_detail.delete()
 
+            user_signup = Signupp.objects.filter(username=username).first()
 
+            if user_signup:
+                user_signup.delete()
 
+            user_detail2 = Odetail2.objects.filter(username=username).first()
 
+            if user_detail2:
+                user_detail2.delete()
 
+            
+            return True
 
+        except Exception as e:
+            # Handle any exceptions that may occur
+            print(e)
+            return False
 
-
-
-
-
+    d_p = Odetail.objects.filter(username=username).first()
+    if request.method == "POST":
+        status = request.POST.get("password")
+        if status == "reject":
+            if org_delete_user_data(username):
+                messages.success(request, "User data deleted successfully.")
+            else:
+                messages.error(request, "Error deleting user data.")
+            signup = Signupp.objects.filter(username=username).first()
+            if signup:
+                signup.delete()
+            else:
+                messages.error(request, "Signup not found.")
+            return redirect("/admdonar")
+        elif status == "accept":
+            # Handle the accept case here
+            pass  # replace this with your code
+    return render(request, 'admOacceptreject.html', {'i': d_p})
 
 
 def donsearch(request, username):
     d_p = Detail.objects.filter(username=username).first()
-    return render(request, 'profile.html', {'i': d_p})
+    d2_p=Detail2.objects.filter(username=username).first()
+    return render(request, 'profile.html', {'i': d_p,'j':d2_p})
 
 
 def admdonreq(request):
@@ -477,13 +663,13 @@ def admrecreq(request):
 
 def qrec(request):
     # username=val()
-    i=Rdetail.objects.all()
-    return render(request,'qrec.html',{'i':i})
+    rd=Rdetail.objects.all()
+    return render(request,'qrec.html',{'rd':rd})
 
 def qorg(request):
     # username=val()
-    org=Odetail.objects.all()
-    return render(request,'qorg.html',{'org':org})
+    up=Odetail.objects.all()
+    return render(request,'qorg.html',{'up':up})
 
 def qhos(request):
     # username=val()
@@ -497,8 +683,8 @@ def dsearch(request):
 
 def admorgreq(request):
     # username=val()
-    org=Odetail.objects.all()
-    return render(request,'admorgreq.html',{'org':org})
+    up=Odetail.objects.all()
+    return render(request,'admorgreq.html',{'up':up})
 
 def admhosreq(request):
     # username=val()
