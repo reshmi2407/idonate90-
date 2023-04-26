@@ -396,6 +396,7 @@ def rdetail2(request):
     return render(request, "rdetail2.html")
 
 
+
 def quick(request):
     if request.method=="POST":
         qfname=request.POST['qfname']
@@ -662,6 +663,11 @@ def admrecreq(request):
 
  return render(request,'admrecreq.html',{'rd':rd,'rd1':rd1})
 
+def qdon(request):
+    # username=val()
+    rd=Detail.objects.all()
+    return render(request,'qdon.html',{'rd':rd})
+
 def qrec(request):
     # username=val()
     rd=Rdetail.objects.all()
@@ -678,25 +684,26 @@ def qhos(request):
     return render(request,'qhos.html',{'hos':hos})
 
 
-def dsearch(request):
-    if request.method == 'POST':
-        username = request.POST.get('username') # Get donor's username from request
-        # Update the request status in your model or database
-        try:
-            donor = Rdetail.objects.get(username=username)
-            donor.status = True # Update request status to True
-            donor.save()
-            messages.success(request, 'Request sent successfully.') # Add success message
-        except Rdetail.DoesNotExist:
-            messages.error(request, 'Donor not found.') # Add error message if donor not found
-        return redirect('dashboard') # Redirect to dsearch view after updating request status
-
-    dsear = Rdetail.objects.all()
-    return render(request, 'dsearch.html', {'dsear': dsear})
 # def dsearch(request):
-#     # username=val()
-#     dsear=Rdetail.objects.all()
-#     return render(request,'dsearch.html',{'dsear':dsear})
+#     if request.method == 'POST':
+#         username = request.POST.get('username') # Get donor's username from request
+#         # Update the request status in your model or database
+#         try:
+#             donor = Rdetail.objects.get(username=username)
+#             donor.status = True # Update request status to True
+#             donor.save()
+#             messages.success(request, 'Request sent successfully.') # Add success message
+#         except Rdetail.DoesNotExist:
+#             messages.error(request, 'Donor not found.') # Add error message if donor not found
+#         return redirect('dashboard') # Redirect to dsearch view after updating request status
+
+#     dsear = Rdetail.objects.all()
+#     return render(request, 'dsearch.html', {'dsear': dsear})
+def dsearch(request):
+    return render(request,'dsearch.html')
+
+def rsearch(request):
+    return render(request,'rsearch.html')
 
 
 def admorgreq(request):

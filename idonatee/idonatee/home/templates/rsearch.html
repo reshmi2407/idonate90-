@@ -30,7 +30,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/dashboard">
+                    <a href="/rdashboard">
                         <i class="fas fa-th-large"></i>
                         <div class="title">Dashboard</div>
                     </a>
@@ -47,23 +47,24 @@
         </div>
         <div class="main">
             <div class="top-bar">
-                <div class="search">
+                {% comment %} <div class="search">
                     <a href="/match">
                     <input type="text" name="search" placeholder="Search User Here!">
                     <label for="search"><i class="fas fa-search"></i></label>
                         </a>
-                </div>
+                </div> {% endcomment %}
                 <i class="fas fa-bell"></i>
                 <div class="user">
                     <img src="{% static '/images/logo.png' %}" alt="">
                 </div>
-            </div>
+            </div> 
             <div class="cards">
                 <div class="card">
                     <div class="card-content">
                        
-                        <div class="number"> <a href="/qrec"></div>
-                        <div class="card-name">Receiver Details</div>
+                        <div class="number"> <a href="/qdon"></div>
+                        <div class="card-name">Donar
+                             Details</div>
                     </div>
                     <div class="icon-box">
                         <i class="fas fa-arrow-alt-circle-up fa-rotate-180"></i>

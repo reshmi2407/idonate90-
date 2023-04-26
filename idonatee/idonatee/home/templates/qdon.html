@@ -1141,28 +1141,18 @@
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
 
   <!-- ======= Header ======= -->
-  <header id="header">
+  {% comment %} <header id="header">
     <div class="d-flex flex-column">
 
-      {% comment %} <div class="profile">
-        <img src="{{i.image.url}}" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="#">{{i.fullname}}</a></h1>
-        <div class="social-links mt-3 text-center">
-          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        </div>
-      </div> {% endcomment %}
+      
 
-      {% comment %} <nav id="navbar" class="nav-menu navbar">
+      <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="/qdashboard" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>HOME</span></a></li>
+          <li><a href="" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>HOME</span></a></li>
 
-         {% endcomment %}
+        
     </div> 
-  </header><!-- End Header -->
+  </header><!-- End Header --> {% endcomment %}
 
   <section id="about" class="about">
     <div class="container">
@@ -1172,33 +1162,32 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Username </th>
-                  <th>Organization Name</th>
+                  <th>Username</th>
+                  <th>Full Name</th>
                   <th>Email</th>
                   <th>Contact</th>
-                  
+                  <th>Bloodgroup</th>
                   <th>Profile</th>
+                  <th>Request</th>
                   
               </tr>
           </thead>
           <tbody>
-            {% for user in up %}
+            {% for user in rd %}
             <tr>
               <td>{{forloop.counter}}</td>
               <td>{{user.username}}</td>
-                <td>{{user.ofname}}</td>
-                <td>{{user.oemail}}</td>
-                <td>{{user.omobno}}</td>
-                
-                <td><a href="/orgsearch/{{user.username}}">View profile</a></td>
-                {% comment %} <td><a href="/orgidentity/{{user.username}}">View Identity</a></td>
-                {% comment %} <td><span class="label label-danger">{{user.status}}</span></td> {% endcomment %}
-                     <td> <a href="#"><button type="submit" class="btn btn-danger">Request</button></a>
-                 
-              </td>
-               </tr>
+                <td>{{user.fullname}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.mobno}}</td>
+                <td>{{user.bg}}</td>
+                <td><a href="/donsearch/{{user.username}}">View profile</a></td>
+                <td> <a href="#"><button type="submit" class="btn btn-danger">Request</button></a>
+               
+                {% comment %} <td> <a href="/recacceptreject/{{user.username}}"><button type="submit" class="btn btn-danger">assign_status</button></a>
+               </tr> {% endcomment %}
           {% endfor %}
-
+          
       </tbody>
   </table>
   

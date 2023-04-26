@@ -26,6 +26,7 @@ urlpatterns = [
     path('rdashboard',views.rdashboard,name='rdashboard'),
     path('ridentity',views.ridentity, name='ridentity'),
     path('rprofile',views.rprofile, name='rprofile'),
+    path('rsearch',views.rsearch, name='rsearch'),
     path('recidentity/<str:username>/',views.recidentity, name='recidentity'),
     path('recsearch/<str:username>/',views.recsearch, name='recsearch'),
     path('recacceptreject/<str:username>/', views.recacceptreject, name='recacceptreject'),
@@ -46,6 +47,7 @@ urlpatterns = [
     path('hdashboard',views.hdashboard,name='hdashboard'),
 
     path('quick',views.quick, name='quick'),
+    path('qdon',views.qdon, name='qdon'),
     path('qrec',views.qrec, name='qrec'),
     path('qorg',views.qorg, name='qorg'),
     path('qhos',views.qhos, name='qhos'),
