@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>Donor Notications</title>
+
+</head>
+<body>
+{% block content %}
+  <h1>Notifications</h1>
+  {% if received_requests %}
+    <ul>
+      {% for request in received_requests %}
+        <li>{{ request.fname }} has sent you a blood donation request.</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>You have no new notifications.</p>
+  {% endif %}
+{% endblock %}
+</body>
+
+
+
+</html>

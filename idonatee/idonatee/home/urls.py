@@ -1,3 +1,4 @@
+
 from django.urls import path
 from . import views
 
@@ -28,11 +29,14 @@ urlpatterns = [
     path('recidentity/<str:username>/',views.recidentity, name='recidentity'),
     path('recsearch/<str:username>/',views.recsearch, name='recsearch'),
     path('recacceptreject/<str:username>/', views.recacceptreject, name='recacceptreject'),
+    path('rnotification',views.rnotification, name='rnotification'),
+
     
     path('odetail',views.odetail, name='odetail'),
     path('odetail2',views.odetail2, name='odetail2'),
     path('oprofile',views.oprofile, name='oprofile'),
     path('oidentity',views.oidentity, name='oidentity'),
+    path('orgidentity/<str:username>/',views.orgidentity, name='orgidentity'),
     path('odashboard',views.odashboard,name='odashboard'),
     path('orgsearch/<str:username>/',views.orgsearch, name='orgsearch'),
     path('orgacceptreject/<str:username>/', views.orgacceptreject, name='orgacceptreject'),
@@ -57,4 +61,5 @@ urlpatterns = [
     path('admhos',views.admhos, name='admhos'),
     path('admhosreq',views.admhosreq, name='admhosreq'),
     path('admin_home/',views.admin_home,name="admin_home"),
-    ] 
+
+    ]

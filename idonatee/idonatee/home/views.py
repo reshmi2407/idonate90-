@@ -120,6 +120,7 @@ def dashboard(request):
 def rdashboard(request):
     return render(request,"rdashboard.html")
 
+
 def odashboard(request):
     return render(request,"odashboard.html")
 
@@ -676,10 +677,27 @@ def qhos(request):
     hos=Hdetail.objects.all()
     return render(request,'qhos.html',{'hos':hos})
 
+
 def dsearch(request):
-    # username=val()
-    dsear=Rdetail.objects.all()
-    return render(request,'dsearch.html',{'dsear':dsear})
+    if request.method == 'POST':
+        username = request.POST.get('username') # Get donor's username from request
+        # Update the request status in your model or database
+        try:
+            donor = Rdetail.objects.get(username=username)
+            donor.status = True # Update request status to True
+            donor.save()
+            messages.success(request, 'Request sent successfully.') # Add success message
+        except Rdetail.DoesNotExist:
+            messages.error(request, 'Donor not found.') # Add error message if donor not found
+        return redirect('dashboard') # Redirect to dsearch view after updating request status
+
+    dsear = Rdetail.objects.all()
+    return render(request, 'dsearch.html', {'dsear': dsear})
+# def dsearch(request):
+#     # username=val()
+#     dsear=Rdetail.objects.all()
+#     return render(request,'dsearch.html',{'dsear':dsear})
+
 
 def admorgreq(request):
     # username=val()
@@ -691,3 +709,6 @@ def admhosreq(request):
     hos=Hdetail.objects.all()
     return render(request,'admhosreq.html',{'hos':hos})
 
+def rnotification(request):
+    received_requests = Detail.objects.filter(email=request.user.email,)
+    return render(request,'rnotification.html', {'received_requests': received_requests})  
