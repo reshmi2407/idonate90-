@@ -309,11 +309,29 @@ def orgidentity(request, username):
     r2_p = Odetail2.objects.filter(username=username).first()
     return render(request, 'oidentity.html', {'i': r_p,'j':r2_p})
 
+def hossearch(request, username):
+    r_p = Hdetail.objects.filter(username=username).first()
+    r2_p = Hdetail2.objects.filter(username=username).first()
+    return render(request, 'hprofile.html', {'i': r_p,'j':r2_p})
+
+def hosidentity(request, username):
+    r_p = Hdetail.objects.filter(username=username).first()
+    r2_p = Hdetail2.objects.filter(username=username).first()
+    return render(request, 'hidentity.html', {'i': r_p,'j':r2_p})
+
+
 def admorgreq(request):
 
     up = Odetail.objects.all()
     up1 = Odetail2.objects.all()
     return render(request, 'admorgreq.html', {'up': up, 'up1': up1})
+
+def admhosreq(request):
+
+    up = Hdetail.objects.all()
+    up1 = Hdetail2.objects.all()
+    return render(request, 'admhosreq.html', {'up': up, 'up1': up1})
+
 
 
 
@@ -354,6 +372,32 @@ def hdetail2(request):
         return render(request, "hdashboard.html")
 
     return render(request, "hdetail2.html")
+
+def hprofile(request):
+    username=val()
+    user_profile=Hdetail.objects.all()
+    for i in user_profile:
+        if username==i.username:
+            break
+
+    user_details=Hdetail2.objects.all()
+    for j in user_details:
+        if username==j.username:
+            break
+    return render(request,'hprofile.html',{'i':i,'j':j})
+
+def hidentity(request):
+    username=val()
+    user_profile=Hdetail.objects.all()
+    for i in user_profile:
+        if username==i.username:
+            break
+
+    user_details=Hdetail2.objects.all()
+    for j in user_details:
+        if username==j.username:
+            break
+    return render(request,'hidentity.html',{'i':i,'j':j})
 
 
 
@@ -589,7 +633,7 @@ def recacceptreject(request, username):
                 signup.delete()
             else:
                 messages.error(request, "Signup not found.")
-            return redirect("/admdonar")
+            return redirect("/admrec")
         elif status == "accept":
             # Handle the accept case here
             pass  # replace this with your code
@@ -641,6 +685,53 @@ def orgacceptreject(request, username):
             pass  # replace this with your code
     return render(request, 'admOacceptreject.html', {'i': d_p})
 
+def hosacceptreject(request, username):
+    def hos_delete_user_data(username):
+        try:
+            user_detail = Hdetail.objects.filter(username=username).first()
+
+            if user_detail:
+                user_detail.delete()
+
+            user_signup = Signupp.objects.filter(username=username).first()
+
+            if user_signup:
+                user_signup.delete()
+
+            user_detail2 = Hdetail2.objects.filter(username=username).first()
+
+            if user_detail2:
+                user_detail2.delete()
+
+            
+            return True
+
+        except Exception as e:
+            # Handle any exceptions that may occur
+            print(e)
+            return False
+
+    d_p = Hdetail.objects.filter(username=username).first()
+    if request.method == "POST":
+        status = request.POST.get("password")
+        if status == "reject":
+            if hos_delete_user_data(username):
+                messages.success(request, "User data deleted successfully.")
+            else:
+                messages.error(request, "Error deleting user data.")
+            signup = Signupp.objects.filter(username=username).first()
+            if signup:
+
+                signup.delete()
+            else:
+                messages.error(request, "Signup not found.")
+            return redirect("/admhos")
+        elif status == "accept":
+            # Handle the accept case here
+            pass  # replace this with your code
+    return render(request, 'admHacceptreject.html', {'i': d_p})
+
+
 
 def donsearch(request, username):
     d_p = Detail.objects.filter(username=username).first()
@@ -680,9 +771,8 @@ def qorg(request):
 
 def qhos(request):
     # username=val()
-    hos=Hdetail.objects.all()
-    return render(request,'qhos.html',{'hos':hos})
-
+    up=Hdetail.objects.all()
+    return render(request,'qhos.html',{'up':up})
 
 # def dsearch(request):
 #     if request.method == 'POST':
@@ -705,6 +795,13 @@ def dsearch(request):
 def rsearch(request):
     return render(request,'rsearch.html')
 
+def osearch(request):
+    return render(request,'osearch.html')
+
+def hsearch(request):
+    return render(request,'hsearch.html')
+
+
 
 def admorgreq(request):
     # username=val()
@@ -713,8 +810,8 @@ def admorgreq(request):
 
 def admhosreq(request):
     # username=val()
-    hos=Hdetail.objects.all()
-    return render(request,'admhosreq.html',{'hos':hos})
+    up=Hdetail.objects.all()
+    return render(request,'admhosreq.html',{'up':up})
 
 def rnotification(request):
     received_requests = Detail.objects.filter(email=request.user.email,)

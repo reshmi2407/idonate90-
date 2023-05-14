@@ -39,12 +39,20 @@ urlpatterns = [
     path('oidentity',views.oidentity, name='oidentity'),
     path('orgidentity/<str:username>/',views.orgidentity, name='orgidentity'),
     path('odashboard',views.odashboard,name='odashboard'),
+    path('osearch',views.osearch, name='osearch'),
     path('orgsearch/<str:username>/',views.orgsearch, name='orgsearch'),
     path('orgacceptreject/<str:username>/', views.orgacceptreject, name='orgacceptreject'),
 
     path('hdetail',views.hdetail, name='hdetail'),
     path('hdetail2',views.hdetail2, name='hdetail2'),
     path('hdashboard',views.hdashboard,name='hdashboard'),
+    path('hprofile',views.hprofile, name='hprofile'),
+    path('hidentity',views.hidentity, name='hidentity'),
+    path('hsearch',views.hsearch, name='hsearch'),
+    path('hossearch/<str:username>/',views.hossearch, name='hossearch'),
+    path('hosidentity/<str:username>/',views.hosidentity, name='hosidentity'),
+    path('hosacceptreject/<str:username>/', views.hosacceptreject, name='hosacceptreject'),
+
 
     path('quick',views.quick, name='quick'),
     path('qdon',views.qdon, name='qdon'),
